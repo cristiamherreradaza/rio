@@ -11,3 +11,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .phpintel
+rio.sublime-project
+rio.sublime-workspace
+.phpintel/

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCamposUsersTable extends Migration
+class AddCamposToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddCamposUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('sector_id')->nullable()->after('id');
-            $table->foreign('sector_id')->references('id')->on('sectores');
+            $table->unsignedBigInteger('categoria_id')->nullable()->after('id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->string('ci', 15)->nullable()->after('password');
             $table->string('perfil', 30)->nullable()->after('password');
             $table->string('celulares', 30)->nullable()->after('password');
@@ -25,7 +25,6 @@ class AddCamposUsersTable extends Migration
             $table->string('estado', 30)->nullable()->after('password');
             $table->datetime('fecha_nacimiento')->nullable()->after('password');
             $table->datetime('deleted_at')->nullable()->after('remember_token');
-
         });
     }
 
@@ -37,8 +36,8 @@ class AddCamposUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['sector_id']);
-            $table->dropColumn('sector_id');
+            $table->dropForeign(['categoria_id']);
+            $table->dropColumn('categoria_id');
             $table->dropColumn('ci');
             $table->dropColumn('perfil');
             $table->dropColumn('celulares');
