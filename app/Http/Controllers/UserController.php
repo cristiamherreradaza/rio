@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function nuevo()
     {
-        $sectores = Sector::all();
+        // $sectores = Sector::all();
         // dd($sectores);
         
         return view('user.nuevo')->with(compact('usuarios'));        			
