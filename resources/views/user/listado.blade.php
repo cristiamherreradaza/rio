@@ -80,5 +80,10 @@
                 }
             });
     	} );
+
+		function edita(id)
+		{
+			window.location.href = "{{ url('User/edita') }}/"+id;
+		}
     </script>
 @endsection
