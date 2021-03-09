@@ -60,4 +60,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Perfil', 'perfil_id');
     }
 
+    public function eventos()
+    {
+        return $this->hasMany('App\Evento');
+    }
 }
