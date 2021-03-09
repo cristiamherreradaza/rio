@@ -86,6 +86,8 @@ class UserController extends Controller
 
     public function elimina(Request $request)
     {
+        User::destroy($request->id);
+        return redirect('User/listado');
 
     }
 
