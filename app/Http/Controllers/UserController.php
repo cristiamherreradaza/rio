@@ -29,7 +29,7 @@ class UserController extends Controller
                     return '<a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('.$usuarios->id.')">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$usuarios->id.', '.$usuarios->name.')">
+                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$usuarios->id.', \''.$usuarios->name.'\')">
                                 <i class="flaticon2-delete"></i>
                             </a>';
                 })->make(true);
