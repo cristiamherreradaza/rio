@@ -49,3 +49,8 @@ Route::get('Sector/elimina/{sector_id}', 'SectorController@elimina');
 Route::get('Sector/otbs/{distrito_id}', 'SectorController@otbs');
 Route::post('Sector/guardaOtb', 'SectorController@guardaOtb');
 Route::get('Sector/eliminaOtb/{otb_id}', 'SectorController@eliminaOtb');
+
+// EVENTOS
+Route::get('Evento/listado', 'EventoController@listado');
+Route::get('Evento/ajax_listado', 'EventoController@ajax_listado');
+Route::get('Evento/nuevo', 'EventoController@nuevo');
