@@ -54,3 +54,4 @@ Route::get('Sector/eliminaOtb/{otb_id}', 'SectorController@eliminaOtb');
 Route::get('Evento/listado', 'EventoController@listado');
 Route::get('Evento/ajax_listado', 'EventoController@ajax_listado');
 Route::get('Evento/nuevo', 'EventoController@nuevo');
+Route::post('Evento/guarda', 'EventoController@guarda');

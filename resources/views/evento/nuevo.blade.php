@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nombre
                                 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nombre" nombre="name" required />
+                                <input type="text" class="form-control" id="nombre" nombre="nombre" required />
                             </div>        
                         </div>
 
@@ -43,7 +43,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Fecha Fin</label>
-                                <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" required />
+                                <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" />
                             </div>
                         </div>
 

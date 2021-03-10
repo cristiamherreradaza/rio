@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nombre
                                 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="name" name="name" required />
+                                <input type="text" class="form-control" id="nombre" name="nombre" required />
                             </div>        
                         </div>
                         <div class="col-md-2">

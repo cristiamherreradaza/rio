@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Evento;
 use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller
 {
@@ -35,5 +36,30 @@ class EventoController extends Controller
     public function nuevo()
     {
         return view('evento.nuevo');        			
+    }
+
+    public function guarda(Request $request)
+    {
+        $archivo = $request->imagen;
+        $direccion = 'imagenesEventos/'; // upload path
+        $nombreArchivo = date('YmdHis'). "." . $archivo->getClientOriginalExtension();
+        $archivo->move($direccion, $nombreArchivo);
+        
+        $evento               = new Evento();
+        $evento->user_id      = Auth::user()->id;
+        $evento->nombre       = $request->nombre;
+        $evento->descripcion  = $request->descripcion;
+        $evento->imagen       = $nombreArchivo;
+        $evento->fecha_inicio = $request->fecha_inicio;
+        $evento->fecha_fin    = $request->fecha_fin;
+        $evento->tipo         = $request->tipo;
+        $evento->save();
+
+        return redirect('Evento/listado');
+    }
+
+    public function edita(Request $request)
+    {
+        
     }
 }
