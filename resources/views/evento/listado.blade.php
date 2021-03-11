@@ -52,7 +52,7 @@
 			<!--end: Datatable-->
 		</div>
 	</div>
-									<!--end::Card-->
+	<!--end::Card-->
 @stop
 
 @section('js')
@@ -96,6 +96,7 @@
                 confirmButtonText: "Si, borrar!",
                 cancelButtonText: "No, cancelar!",
                 reverseButtons: true
+                
             }).then(function(result) {
                 if (result.value) {
 
@@ -118,5 +119,9 @@
             });
         }
 
+        function asistencia(id)
+        {
+        	window.location.href = "{{ url('Evento/asistencia') }}/"+id;
+        }
     </script>
 @endsection

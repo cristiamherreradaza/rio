@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
+use App\Asistencia;
+use App\User;
 use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,9 @@ class EventoController extends Controller
                 ->addColumn('action', function($eventos){
                     return '<a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('.$eventos->id.')">
                                 <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asistencia('.$eventos->id.')">
+                                <i class="fas fa-list-alt"></i>
                             </a>
                             <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$eventos->id.', \''.$eventos->nombre.'\')">
                                 <i class="flaticon2-delete"></i>
@@ -79,5 +84,25 @@ class EventoController extends Controller
     {
         Evento::destroy($id);
         return redirect('Evento/listado');
+    }
+
+    public function asistencia(Request $request, $id)
+    {
+        $doctores  = User::where('perfil', 'Doctor')
+                        ->get();
+
+        $datosEvento = Evento::find($id);
+
+        return view('evento.asistencia')->with(compact('doctores', 'datosEvento'));                  
+    }
+
+    public function asiste(Request $request, $user_id, $evento_id)
+    {
+        // dd($evento_id);
+        $asistencia = new Asistencia();
+        $asistencia->user_id = $user_id;
+        $asistencia->evento_id = $evento_id;
+        $asistencia->save();
+        return redirect("Evento/asistencia/$evento_id");
     }
 }

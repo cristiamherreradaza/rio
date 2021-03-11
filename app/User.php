@@ -50,18 +50,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function sector()
+    public function categoria()
     {
-        return $this->belongsTo('App\Sector', 'sector_id');
+        return $this->belongsTo('App\Categoria', 'categoria_id');
     }
 
-    public function perfil()
+    public function evento()
     {
-        return $this->belongsTo('App\Perfil', 'perfil_id');
+        return $this->belongsTo('App\Evento', 'evento_id');
     }
 
     public function eventos()
     {
         return $this->hasMany('App\Evento');
     }
+
+    public function asistencias()
+    {
+        return $this->hasMany('App\Asistencia');
+    }
+
 }

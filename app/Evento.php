@@ -25,4 +25,10 @@ class Evento extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function asistencias()
+    {
+        return $this->hasMany('App\Asistencia');
+    }
+
 }
