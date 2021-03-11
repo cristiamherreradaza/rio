@@ -42,14 +42,6 @@ Route::get('User/ajax_listado', 'UserController@ajax_listado');
 Route::get('User/edita/{id}', 'UserController@edita');
 Route::get('User/elimina/{id}', 'UserController@elimina');
 
-// SECTORES
-Route::get('Sector/distritos', 'SectorController@distritos');
-Route::post('Sector/guarda', 'SectorController@guarda');
-Route::get('Sector/elimina/{sector_id}', 'SectorController@elimina');
-Route::get('Sector/otbs/{distrito_id}', 'SectorController@otbs');
-Route::post('Sector/guardaOtb', 'SectorController@guardaOtb');
-Route::get('Sector/eliminaOtb/{otb_id}', 'SectorController@eliminaOtb');
-
 // EVENTOS
 Route::get('Evento/listado', 'EventoController@listado');
 Route::get('Evento/ajax_listado', 'EventoController@ajax_listado');
