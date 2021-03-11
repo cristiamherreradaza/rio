@@ -105,4 +105,13 @@ class EventoController extends Controller
         $asistencia->save();
         return redirect("Evento/asistencia/$evento_id");
     }
+
+    public function falta(Request $request, $user_id, $evento_id)
+    {
+        Asistencia::where('user_id', $user_id)
+                    ->where('evento_id', $evento_id)
+                    ->delete();
+
+        return redirect("Evento/asistencia/$evento_id");
+    }
 }

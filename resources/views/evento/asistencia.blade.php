@@ -118,7 +118,7 @@
                                 <i class="fas fa-calendar-check"></i>
                             </a>
     
-                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="falta('{{ $d->id }}', '{{ $d->departamento }}', '{{ $d->nombre }}')">
+                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="falta('{{ $d->id }}', '{{ $datosEvento->id }}')">
                                 <i class="fas fa-calendar-minus"></i>
                             </a>
                         </td>
@@ -148,6 +148,11 @@
         function asiste(user_id, evento_id)
         {
             window.location.href = "{{ url('Evento/asiste') }}/"+user_id+"/"+evento_id;
+        }
+
+        function falta(user_id, evento_id)
+        {
+            window.location.href = "{{ url('Evento/falta') }}/"+user_id+"/"+evento_id;
         }
 
         function elimina(id, departamento, nombre)
