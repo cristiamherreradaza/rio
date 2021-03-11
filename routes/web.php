@@ -57,3 +57,4 @@ Route::get('Evento/nuevo', 'EventoController@nuevo');
 Route::get('Evento/nuevo', 'EventoController@nuevo');
 Route::get('Evento/edita/{id}', 'EventoController@edita');
 Route::post('Evento/guarda', 'EventoController@guarda');
+Route::get('Evento/elimina/{id}', 'EventoController@elimina');

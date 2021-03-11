@@ -74,4 +74,10 @@ class EventoController extends Controller
         $datosEvento = Evento::find($id);
         return view('evento.edita')->with(compact('datosEvento'));        			
     }
+
+    public function elimina(Request $request, $id)
+    {
+        Evento::destroy($id);
+        return redirect('Evento/listado');
+    }
 }
