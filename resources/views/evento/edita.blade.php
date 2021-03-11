@@ -28,22 +28,35 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nombre
                                 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required />
+                                <input type="hidden" id="id" name="id" value="{{ $datosEvento->id }}" />
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $datosEvento->nombre }}" required />
                             </div>        
                         </div>
+
+                        @php
+                            $arrayFechaInicio = explode(" ", $datosEvento->fecha_inicio);
+                            $nuevaFechaInicio = $arrayFechaInicio[0]."T".$arrayFechaInicio[1];
+
+                            if($datosEvento->fecha_fin != null){
+                                $arrayFechaFin = explode(" ", $datosEvento->fecha_fin);
+                                $nuevaFechaFin = $arrayFechaFin[0]."T".$arrayFechaFin[1];
+                            }else{
+                                $nuevaFechaFin = null;
+                            }
+                        @endphp
 
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Fecha Inicio
                                 <span class="text-danger">*</span></label>
-                                <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" required />
+                                <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ $nuevaFechaInicio }}" required />
                             </div>
                         </div>
 
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Fecha Fin</label>
-                                <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" />
+                                <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" value="{{ $nuevaFechaFin }}" />
                             </div>
                         </div>
 
@@ -51,8 +64,8 @@
                             <div class="form-group">
                                 <label for="tipo">Tipo</label>
                                 <select class="form-control" id="tipo" name="tipo">
-                                    <option value="Interno">Interno</option>
-                                    <option value="Externo">Externo</option>
+                                    <option value="Interno" {{ ($datosEvento->tipo == 'Interno')?'selected':'' }}>Interno</option>
+                                    <option value="Externo" {{ ($datosEvento->tipo == 'Externo')?'selected':'' }}>Externo</option>
                                 </select>
                             </div>
                         </div>
@@ -64,14 +77,17 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Descripcion</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->descripcion }}</textarea>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <img src="{{ asset("imagenesEventos/$datosEvento->imagen") }}" width="50%" alt="">
+                        </div>
+                        <div class="col-md-6">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="imagen" id="customFile" />
                                 <label class="custom-file-label" for="customFile">Subir Archivo</label>

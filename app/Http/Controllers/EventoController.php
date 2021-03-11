@@ -40,16 +40,27 @@ class EventoController extends Controller
 
     public function guarda(Request $request)
     {
-        $archivo = $request->imagen;
-        $direccion = 'imagenesEventos/'; // upload path
-        $nombreArchivo = date('YmdHis'). "." . $archivo->getClientOriginalExtension();
-        $archivo->move($direccion, $nombreArchivo);
+        // dd($request->id);
+        if($request->imagen != null){
+            $archivo = $request->imagen;
+            $direccion = 'imagenesEventos/'; // upload path
+            $nombreArchivo = date('YmdHis'). "." . $archivo->getClientOriginalExtension();
+            $archivo->move($direccion, $nombreArchivo);
+        }
+
+        if($request->id == null){
+            $evento = new Evento();
+        }else{
+            $evento = Evento::find($request->id);
+        }
+
         
-        $evento               = new Evento();
         $evento->user_id      = Auth::user()->id;
         $evento->nombre       = $request->nombre;
         $evento->descripcion  = $request->descripcion;
-        $evento->imagen       = $nombreArchivo;
+        if($request->imagen != null){
+            $evento->imagen = $nombreArchivo;
+        }
         $evento->fecha_inicio = $request->fecha_inicio;
         $evento->fecha_fin    = $request->fecha_fin;
         $evento->tipo         = $request->tipo;
@@ -58,8 +69,9 @@ class EventoController extends Controller
         return redirect('Evento/listado');
     }
 
-    public function edita(Request $request)
+    public function edita(Request $request, $id)
     {
-        
+        $datosEvento = Evento::find($id);
+        return view('evento.edita')->with(compact('datosEvento'));        			
     }
 }
