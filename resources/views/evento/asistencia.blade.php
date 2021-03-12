@@ -80,52 +80,54 @@
         </div>
         <div class="card-body">
             <!--begin: Datatable-->
-            <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Carnet</th>
-                        <th>Email</th>
-                        <th>Categoria</th>
-                        <th>Estado</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($doctores as $d)
-                    @php
-                        $asistencia = App\Asistencia::where('evento_id', $datosEvento->id)
-                                        ->where('user_id', $d->id)
-                                        ->count();
-                                        
-                        if($asistencia > 0){
-                            $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Asistio</a>';
-                        }else{
-                            $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Falto</a>';
-                        }
-                    @endphp     
-                    <tr>
-                        <td>{{ $d->id }}</td>
-                        <td>{{ $d->name }}</td>
-                        <td>{{ $d->ci }}</td>
-                        <td>{{ $d->email }}</td>
-                        <td>{{ $d->categoria->nombre }}</td>
-                        <td>{!! $estado !!}</td>
-                        <td nowrap="nowrap">
+            <div class="table-responsive m-t-40">
+                <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Carnet</th>
+                            <th>Email</th>
+                            <th>Categoria</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($doctores as $d)
+                        @php
+                            $asistencia = App\Asistencia::where('evento_id', $datosEvento->id)
+                                            ->where('user_id', $d->id)
+                                            ->count();
+                                            
+                            if($asistencia > 0){
+                                $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Asistio</a>';
+                            }else{
+                                $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Falto</a>';
+                            }
+                        @endphp     
+                        <tr>
+                            <td>{{ $d->id }}</td>
+                            <td>{{ $d->name }}</td>
+                            <td>{{ $d->ci }}</td>
+                            <td>{{ $d->email }}</td>
+                            <td>{{ $d->categoria->nombre }}</td>
+                            <td>{!! $estado !!}</td>
+                            <td nowrap="nowrap">
 
-                            <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asiste('{{ $d->id }}', '{{ $datosEvento->id }}')">
-                                <i class="fas fa-calendar-check"></i>
-                            </a>
-    
-                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="falta('{{ $d->id }}', '{{ $datosEvento->id }}')">
-                                <i class="fas fa-calendar-minus"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asiste('{{ $d->id }}', '{{ $datosEvento->id }}')">
+                                    <i class="fas fa-calendar-check"></i>
+                                </a>
+        
+                                <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="falta('{{ $d->id }}', '{{ $datosEvento->id }}')">
+                                    <i class="fas fa-calendar-minus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <!--end: Datatable-->
         </div>
     </div>
@@ -134,7 +136,6 @@
 
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/crud/datatables/basic/basic.js') }}"></script>
     <script type="text/javascript">
     	$(document).ready(function() {
     	    $('#tabla_usuarios').DataTable({

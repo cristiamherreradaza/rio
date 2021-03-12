@@ -34,30 +34,31 @@
 		</div>
 		<div class="card-body">
 			<!--begin: Datatable-->
-			<table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Nombre</th>
-						<th>Carnet</th>
-						<th>Email</th>
-						<th>Perfil</th>
-						<th>Celulares</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
+			<div class="table-responsive m-t-40">
+				<table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Carnet</th>
+							<th>Email</th>
+							<th>Perfil</th>
+							<th>Celulares</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 			<!--end: Datatable-->
 		</div>
 	</div>
-									<!--end::Card-->
+	<!--end::Card-->
 @stop
 
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/crud/datatables/basic/basic.js') }}"></script>
     <script type="text/javascript">
     	$(document).ready(function() {
     	    $('#tabla_usuarios').DataTable({
@@ -85,6 +86,12 @@
 		{
 			window.location.href = "{{ url('User/edita') }}/"+id;
 		}
+
+		function cuotas(id)
+		{
+			window.location.href = "{{ url('User/pagos') }}/"+id;
+		}
+
 
 		function elimina(id, nombre)
         {
