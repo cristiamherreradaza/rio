@@ -16,7 +16,7 @@
 						</svg>
 						<!--end::Svg Icon-->
 					</span>
-					<span class="menu-text">Dashboard</span>
+					<span class="menu-text">Control Panel</span>
 				</a>
 			</li>
 			<li class="menu-section">
