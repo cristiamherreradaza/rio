@@ -177,7 +177,7 @@
 						</li>
 
 						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('User/listado') }}" class="menu-link">
+							<a href="{{ url('Categoria/listado') }}" class="menu-link">
 								<i class="menu-bullet menu-bullet-dot">
 									<span></span>
 								</i>
