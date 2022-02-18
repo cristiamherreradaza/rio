@@ -194,4 +194,12 @@ class UserController extends Controller
         
         return view('user.ajax_busca')->with(compact('usuarios'));
     }
+
+    public function guarda_pago(Request $request){
+        // dd($request->all());
+        dd($request->select);
+        // foreach($request->select as $ids){
+
+        // }
+    }
 }

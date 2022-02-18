@@ -18,52 +18,74 @@
             </div>
         </div>
         <div class="card-body">
-            <!--begin: Datatable-->
-            <div class="table-responsive m-t-40">
-                <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gestion</th>
-                            <th>Mes</th>
-                            <th>Monto</th>
-                            <th>Fecha Pago</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($pagos as $p)
-                        @php
-                            if($p->estado == 'Debe'){
-                                $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
-                            }else{
-                                $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
-                            }
-                        @endphp     
-                        <tr>
-                            <td>{{ $p->id }}</td>
-                            <td>{{ $p->gestion }}</td>
-                            <td>{{ $p->mes }}</td>
-                            <td>{{ $p->monto }}</td>
-                            <td>{{ $p->fecha_pago }}</td>
-                            <td>{!! $estado !!}</td>
-                            <td nowrap="nowrap">
-
-                                <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Pagar')">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </a>
-        
-                                <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Eliminar')">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <!--end: Datatable-->
+            <form action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
+                @csrf
+                <!--begin: Datatable-->
+                <div class="table-responsive m-t-40">
+                    <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Gestion</th>
+                                <th>Mes</th>
+                                <th>Monto</th>
+                                <th>Fecha Pago</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pagos as $p)
+                            @php
+                                $verify = '';
+                                if($p->estado == 'Debe'){
+                                    $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
+                                }else{
+                                    $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
+                                    $verify = 'checked';
+                                }
+                            @endphp     
+                            <tr>
+                                <td>{{ $p->id }}</td>
+                                <td>{{ $p->gestion }}</td>
+                                <td>{{ $p->mes }}</td>
+                                <td>{{ $p->monto }}</td>
+                                <td>{{ $p->fecha_pago }}</td>
+                                <td>{!! $estado !!}</td>
+                                <td nowrap="nowrap">
+                                    <div class="form-group row">
+                                        <label class="col-3 col-form-label text-danger">Debe</label>
+                                        <div class="col-3">
+                                            <span class="switch switch-primary">
+                                                <label>
+                                                <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
+                                                <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-3 col-form-label text-success">Pago</label>
+                                    </div>
+                                        
+                                    {{-- <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Pagar')">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </a>
+            
+                                    <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Eliminar')">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </a> --}}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!--end: Datatable-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-block btn-success"><i class="fa fa-money-check"></i> PAGAR</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 									<!--end::Card-->
@@ -126,6 +148,10 @@
         function cambiaPago(id , estado)
         {
             window.location.href = "{{ url('User/cambiaPago') }}/"+id+"/"+estado;
+        }
+
+        function pagar(){
+            console.log("pagar");
         }
     </script>
 @endsection

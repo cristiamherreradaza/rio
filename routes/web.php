@@ -44,6 +44,7 @@ Route::get('User/elimina/{id}', 'UserController@elimina');
 Route::get('User/pagos/{user_id}', 'UserController@pagos');
 Route::get('User/cambiaPago/{id}/{estado}', 'UserController@cambiaPago');
 Route::post('User/ajax_busca', 'UserController@ajax_busca');
+Route::post('User/guarda_pago', 'UserController@guarda_pago');
 
 // EVENTOS
 Route::get('Evento/listado', 'EventoController@listado');
