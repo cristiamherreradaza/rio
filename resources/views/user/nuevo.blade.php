@@ -24,7 +24,7 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nombre
                                 <span class="text-danger">*</span></label>
@@ -38,7 +38,14 @@
                                 <input type="number" class="form-control" id="ci" name="ci" required />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Colegiatura
+                                <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="colegiatura" name="colegiatura" required />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email
                                 <span class="text-danger">*</span></label>
