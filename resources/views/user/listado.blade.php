@@ -4,6 +4,10 @@
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet">
 @endsection
 
+@section('metadatos')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
+
 @section('content')
 	<!--begin::Card-->
 	<div class="card card-custom gutter-b">
@@ -33,8 +37,54 @@
 			</div>
 		</div>
 		<div class="card-body">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="exampleInputPassword1">Nombre
+							<span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="nombre" name="nombre" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="exampleInputPassword1">Carnet
+							<span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="carnet" name="carnet" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="exampleInputPassword1">Email
+							<span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="email" name="email" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="exampleInputPassword1">Celular
+							<span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="celular" name="celular" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="exampleInputPassword1">Colegiatura
+							<span class="text-danger">*</span></label>
+						<input type="text" class="form-control" id="colegiatura" name="colegiatura" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<p style="margin-top: 24px"></p>
+						<button class="btn btn-success btn-block"  onclick="buscar()"><i class="fa fa-search"></i>Buscar</button>
+					</div>
+				</div>
+			</div>
+			<div id="tabla-usuarios">
+
+			</div>
 			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40">
+			{{-- <div class="table-responsive m-t-40">
 				<table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
 					<thead>
 						<tr>
@@ -48,9 +98,10 @@
 						</tr>
 					</thead>
 					<tbody>
+
 					</tbody>
 				</table>
-			</div>
+			</div> --}}
 			<!--end: Datatable-->
 		</div>
 	</div>
@@ -60,26 +111,44 @@
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script type="text/javascript">
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		
     	$(document).ready(function() {
-    	    $('#tabla_usuarios').DataTable({
-				iDisplayLength: 10,
-				processing: true,
-				serverSide: true,
-				ajax: "{{ url('User/ajax_listado') }}",
-				"order": [[ 0, "desc" ]],
-				columns: [
-					{data: 'id', name: 'id'},
-					{data: 'name', name: 'name'},
-					{data: 'ci', name: 'ci'},
-					{data: 'email', name: 'email'},
-					{data: 'perfil', name: 'perfil'},
-					{data: 'celulares', name: 'celulares'},
-					{data: 'action'},
-				],
-                language: {
-                    url: '{{ asset('datatableEs.json') }}'
-                }
-            });
+
+			buscar();
+			// $(function () {
+			// 	$('#tabla_usuarios').DataTable({
+			// 		language: {
+			// 			url: '{{ asset('datatableEs.json') }}',
+			// 		},
+			// 		order: [[ 0, "desc" ]]
+			// 	});
+
+			// });
+			
+    	    // $('#tabla_usuarios').DataTable({
+			// 	iDisplayLength: 10,
+			// 	processing: true,
+			// 	serverSide: true,
+			// 	ajax: "{{ url('User/ajax_listado') }}",
+			// 	"order": [[ 0, "desc" ]],
+			// 	columns: [
+			// 		{data: 'id', name: 'id'},
+			// 		{data: 'name', name: 'name'},
+			// 		{data: 'ci', name: 'ci'},
+			// 		{data: 'email', name: 'email'},
+			// 		{data: 'perfil', name: 'perfil'},
+			// 		{data: 'celulares', name: 'celulares'},
+			// 		{data: 'action'},
+			// 	],
+            //     language: {
+            //         url: '{{ asset('datatableEs.json') }}'
+            //     }
+            // });
     	} );
 
 		function edita(id)
@@ -124,6 +193,31 @@
                 }
             });
         }
+
+		function buscar(){
+
+			var nombre		 = $('#nombre').val();
+			var carnet		 = $('#carnet').val();
+			var email		 = $('#email').val();
+			var celular		 = $('#celular').val();
+			var colegiatura	 = $('#colegiatura').val();
+
+			$.ajax({
+                url: "{{ url('User/ajax_busca') }}",
+                data: {
+					nombre: nombre,
+					carnet: carnet,
+					email: email,
+					celular: celular,
+					colegiatura: colegiatura
+				},
+                type: 'POST',
+                success: function(data) {
+                    $("#tabla-usuarios").html(data);
+                    // $("#listadoProductosAjax").html(data);
+                }
+            });
+		}
 
     </script>
 @endsection

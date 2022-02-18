@@ -152,4 +152,45 @@ class UserController extends Controller
         return view('user.pagos')->with(compact('pagos', 'datosUsuario'));                 
 
     }
+
+    public function ajax_busca(Request $request){
+        // dd($request->input('nombre'));
+        $query = User::orderBy('id', 'desc');
+
+        if ($request->filled('nombre')) {
+            $nombre = $request->input('nombre');
+            $query->where('name', 'like', "%$nombre%");
+        }
+
+        if ($request->filled('carnet')) {
+            $carnet = $request->input('carnet');
+            $query->where('ci', $carnet);
+        }
+
+        if ($request->filled('email')) {
+            $email = $request->input('email');
+            $query->where('email', $email);
+        }
+
+        if ($request->filled('celular')) {
+            $celular = $request->input('celular');
+            $query->where('celulares', $celular);
+        }
+
+        if ($request->filled('colegiatura')) {
+            $colegiatura = $request->input('colegiatura');
+            $query->where('colegiatura', $colegiatura);
+        }
+
+        if ($request->filled('nombre') || $request->filled('carnet') || $request->filled('email') || $request->filled('celular') || $request->filled('colegiatura')) {
+            $query->limit(300);
+        }else{
+            $query->limit(200);
+        }
+
+        
+        $usuarios = $query->get();
+        
+        return view('user.ajax_busca')->with(compact('usuarios'));
+    }
 }

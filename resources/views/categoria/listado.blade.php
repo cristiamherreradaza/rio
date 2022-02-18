@@ -23,7 +23,7 @@
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" name="categoria_id" id="categoria_id" value="0"/>
+									<input type="hidden" name="categoria_id" id="categoria_id" value="0"/>
 									<label for="exampleSelect1">Nombre <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="nombre" name="nombre">
 								</div>        
@@ -183,70 +183,4 @@
             });
 		}
 	</script>
-    {{-- <script type="text/javascript">
-    	$(document).ready(function() {
-    	    $('#tabla_usuarios').DataTable({
-				iDisplayLength: 10,
-				processing: true,
-				serverSide: true,
-				ajax: "{{ url('Evento/ajax_listado') }}",
-				"order": [[ 0, "desc" ]],
-				columns: [
-					{data: 'id', name: 'id'},
-					{data: 'nombre', name: 'nombre'},
-					{data: 'descripcion', name: 'descripcion'},
-					{data: 'fecha_inicio', name: 'fecha_inicio'},
-					{data: 'fecha_fin', name: 'fecha_fin'},
-					{data: 'tipo', name: 'tipo'},
-					{data: 'action'},
-				],
-                language: {
-                    url: '{{ asset('datatableEs.json') }}'
-                }
-            });
-    	} );
-
-		function edita(id)
-		{
-			window.location.href = "{{ url('Evento/edita') }}/"+id;
-		}
-
-		function elimina(id, nombre)
-        {
-            Swal.fire({
-                title: "Quieres eliminar "+nombre,
-                text: "Ya no podras recuperarlo!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Si, borrar!",
-                cancelButtonText: "No, cancelar!",
-                reverseButtons: true
-
-            }).then(function(result) {
-                if (result.value) {
-
-                    window.location.href = "{{ url('Evento/elimina') }}/"+id;
-
-                    Swal.fire(
-                        "Borrado!",
-                        "El registro fue eliminado.",
-                        "success"
-                    )
-                    // result.dismiss can be "cancel", "overlay",
-                    // "close", and "timer"
-                } else if (result.dismiss === "cancel") {
-                    Swal.fire(
-                        "Cancelado",
-                        "La operacion fue cancelada",
-                        "error"
-                    )
-                }
-            });
-        }
-
-        function asistencia(id)
-        {
-        	window.location.href = "{{ url('Evento/asistencia') }}/"+id;
-        }
-    </script> --}}
 @endsection

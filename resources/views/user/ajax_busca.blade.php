@@ -1,0 +1,46 @@
+<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet">
+<table class="table table-bordered table-hover table-striped" id="tabla_criaderos">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>CARNET</th>
+            <th>EMAIL</th>
+            <th>PERFIL</th>
+            <th>CELULARES</th>
+            <th>COLEGIATURA</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse ($usuarios as $us)
+        <tr>
+            <td>{{ $us->id }}</td>
+            <td>{{ $us->name }}</td>
+            <td>{{ $us->ci }}</td>
+            <td>{{ $us->email }}</td>
+            <td>{{ $us->perfil }}</td>
+            <td>{{ $us->celulares}}</td>
+            <td>{{ $us->colegiatura }}</td>
+            <td>
+
+            </td>
+        </tr>
+        @empty
+        <h3 class="text-danger">NO EXISTEN DATOS</h3>
+        @endforelse
+    </tbody>
+    <tbody>
+    </tbody>
+</table>
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script>
+    $('#tabla_criaderos').DataTable({
+        order: [[ 0, "desc" ]],
+        searching: false,
+        lengthChange: false,
+        language: {
+            url: '{{ asset('datatableEs.json') }}'
+        },
+    });
+</script>

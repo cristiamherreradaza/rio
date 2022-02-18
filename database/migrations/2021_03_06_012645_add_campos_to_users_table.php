@@ -17,6 +17,7 @@ class AddCamposToUsersTable extends Migration
             $table->unsignedBigInteger('categoria_id')->nullable()->after('id');
             $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->string('ci', 15)->nullable()->after('password');
+            $table->string('colegiatura', 120)->nullable()->after('password');
             $table->string('perfil', 30)->nullable()->after('password');
             $table->string('celulares', 30)->nullable()->after('password');
             $table->string('direccion', 200)->nullable()->after('password');
@@ -39,6 +40,7 @@ class AddCamposToUsersTable extends Migration
             $table->dropForeign(['categoria_id']);
             $table->dropColumn('categoria_id');
             $table->dropColumn('ci');
+            $table->dropColumn('colegiatura');
             $table->dropColumn('perfil');
             $table->dropColumn('celulares');
             $table->dropColumn('direccion');
