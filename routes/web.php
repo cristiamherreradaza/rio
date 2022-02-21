@@ -25,6 +25,11 @@ Route::get('/', 'UserController@listado');
 
 Auth::routes();
 
+//  Para sentry debug automatico
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
+
 // PANEL DE CONTROL
 Route::get('/home', 'PanelController@inicio');
 Route::get('Panel/inicio', 'PanelController@inicio');
