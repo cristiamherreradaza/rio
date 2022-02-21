@@ -70,7 +70,7 @@
 				columns: [
 					{data: 'id', name: 'id'},
 					{data: 'nombre', name: 'nombre'},
-					{data: 'descripcion', name: 'descripcion'},
+					{data: 'invitacion', name: 'invitacion'},
 					{data: 'fecha_inicio', name: 'fecha_inicio'},
 					{data: 'fecha_fin', name: 'fecha_fin'},
 					{data: 'tipo', name: 'tipo'},

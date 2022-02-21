@@ -60,9 +60,9 @@ class EventoController extends Controller
         }
 
         
-        $evento->user_id      = Auth::user()->id;
-        $evento->nombre       = $request->nombre;
-        $evento->descripcion  = $request->descripcion;
+        $evento->user_id    = Auth::user()->id;
+        $evento->nombre     = $request->nombre;
+        $evento->invitacion = $request->invitacion;
         if($request->imagen != null){
             $evento->imagen = $nombreArchivo;
         }
