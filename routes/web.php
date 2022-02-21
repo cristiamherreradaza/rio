@@ -49,7 +49,7 @@ Route::get('User/listadoAdmin', 'UserController@listadoAdmin');
 Route::get('User/nuevoAdmin/{user_id}', 'UserController@nuevoAdmin');
 Route::post('User/guardaAdmin', 'UserController@guardaAdmin');
 Route::get('User/editaAdmin/{user_id}', 'UserController@editaAdmin');
-
+Route::get('User/eliminaAdmin/{user_id}', 'UserController@eliminaAdmin');
 
 
 

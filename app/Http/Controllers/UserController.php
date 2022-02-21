@@ -261,11 +261,10 @@ class UserController extends Controller
         return redirect('User/listadoAdmin');
     }
 
-    public function editaAdmin(Request $request, $user_id){
-
-        // $datosUsuario = User::findOrFail($id);
-        // $categorias = Categoria::all();
-
-        // return view('user.edita')->with(compact('datosUsuario', 'categorias'));   
+    public function eliminaAdmin(Request $request, $user_id){
+     
+        User::destroy($user_id);
+        return redirect('User/listadoAdmin');
+   
     }
 }

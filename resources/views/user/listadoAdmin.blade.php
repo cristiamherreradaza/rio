@@ -91,6 +91,38 @@
 		{
 			window.location.href = "{{ url('User/nuevoAdmin') }}/"+id;
 		}
+
+        function elimina(id, nombre)
+        {
+            Swal.fire({
+                title: "Quieres eliminar "+nombre,
+                text: "Ya no podras recuperarlo!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, borrar!",
+                cancelButtonText: "No, cancelar!",
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.value) {
+
+                    window.location.href = "{{ url('User/eliminaAdmin') }}/"+id;
+
+                    Swal.fire(
+                        "Borrado!",
+                        "El registro fue eliminado.",
+                        "success"
+                    )
+                    // result.dismiss can be "cancel", "overlay",
+                    // "close", and "timer"
+                } else if (result.dismiss === "cancel") {
+                    Swal.fire(
+                        "Cancelado",
+                        "La operacion fue cancelada",
+                        "error"
+                    )
+                }
+            });
+        }
     </script>
     {{-- <script type="text/javascript">
 		$.ajaxSetup({
