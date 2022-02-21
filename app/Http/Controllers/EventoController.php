@@ -18,6 +18,7 @@ class EventoController extends Controller
 
     public function listado()
     {
+        des
         return view('evento.listado');
     }
 
