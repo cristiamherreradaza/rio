@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('Publicaciones/listado', 'api\PublicacionesController@listado');
+
+Route::get('Publicaciones/eventos', 'api\PublicacionesController@eventos');
