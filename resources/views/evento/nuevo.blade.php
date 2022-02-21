@@ -75,44 +75,18 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12">
-<<<<<<< HEAD
                             <div class="form-group">
                                 <label for="exampleInputPassword1">INVITACION</label>
                                 <textarea name="invitacion" id="invitacion" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
-=======
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="imagen" id="customFile" />
-                                <label class="custom-file-label" for="customFile">Subir Archivo</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <br />
->>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-<<<<<<< HEAD
-                                <label for="exampleInputPassword1">ORDEN DEL DIA</label>
-                                <textarea name="ordendia" id="ordendia" cols="30" rows="10" class="form-control"></textarea>
-=======
-                                <label for="exampleInputPassword1">INVITACION</label>
-                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
-                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">ORDEN DEL DIA</label>
-                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
-                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
->>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
+                                <textarea name="ordendia" id="ordendia" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -121,12 +95,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">ACTA DE REUNION</label>
-<<<<<<< HEAD
                                 <textarea name="actareunion" id="actareunion" cols="30" rows="10" class="form-control"></textarea>
-=======
-                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
-                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
->>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
                             </div>
                         </div>
 
@@ -191,7 +160,6 @@
             }
         }
 
-<<<<<<< HEAD
         function canbiaDepartamento()
         {
             let departamento = $("#departamento").val();
@@ -268,7 +236,5 @@
             $("#customFile_"+numero).val('');
         }
 
-=======
->>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
     </script>
 @endsection
