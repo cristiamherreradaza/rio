@@ -60,24 +60,46 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="imagen" id="customFile" onchange="showMyImage(this, 1)"/>
+                                <label class="custom-file-label" for="customFile">Subir Archivo</label>
+                            </div>
 
+                            <img id="thumbnil_1" class="img-fluid" style="margin-top: 10px;" />
+                            <button type="button" class="btn btn-danger mr-2 btn-block" id="btnRimg_1" style="display:none;"
+                                onclick="mueveImagen(1)">Quitar Imagen
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Descripcion</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control"></textarea>
+                                <label for="exampleInputPassword1">INVITACION</label>
+                                <textarea name="invitacion" id="invitacion" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="imagen" id="customFile" />
-                                <label class="custom-file-label" for="customFile">Subir Archivo</label>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ORDEN DEL DIA</label>
+                                <textarea name="ordendia" id="ordendia" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ACTA DE REUNION</label>
+                                <textarea name="actareunion" id="actareunion" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
                     <br />
 
                     <div class="row">
@@ -137,6 +159,66 @@
                 }
             });
 
+        }
+
+        function showMyImage(fileInput, numero) {
+
+            var files = fileInput.files;
+            $("#btnRimg_"+numero).show();
+            console.log(numero);
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /image.*/;
+                if (!file.type.match(imageType)) {
+                    continue;
+                }
+                var img = document.getElementById("thumbnil_"+numero);
+                img.file = file;
+                var reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    return function (e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function quitarImagen(numero)
+        {
+            $("#thumbnil_"+numero).attr('src', "{{ asset('assets/blanco.jpg') }}");   
+            Swal.fire({
+                title: "Desea eliminar la imagen",
+                text: "Ya no podras recuperarlo!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, borrar!",
+                cancelButtonText: "No, cancelar!",
+                reverseButtons: true
+            }).then(function(result) {
+                // si pulsa boton si
+                if (result.value) {
+
+                    ajaxEliminaImagen(numero);
+
+                    Swal.fire(
+                        "Borrado!",
+                        "El registro fue eliminado.",
+                        "success"
+                    )
+                } else if (result.dismiss === "cancel") {
+                    Swal.fire(
+                        "Cancelado",
+                        "La operacion fue cancelada",
+                        "error"
+                    )
+                }
+            });
+        }
+
+        function mueveImagen(numero){
+            $("#thumbnil_"+numero).attr('src', "{{ asset('assets/blanco.jpg') }}");
+            $("#customFile_"+numero).val('');
         }
 
     </script>
