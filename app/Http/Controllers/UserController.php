@@ -197,9 +197,21 @@ class UserController extends Controller
 
     public function guarda_pago(Request $request){
         // dd($request->all());
-        dd($request->select);
-        // foreach($request->select as $ids){
+        // dd(array_keys($request->select));
+        $user_id = $request->input('user_id');
 
-        // }
-    }
+        $idsPagos = array_keys($request->select);
+
+        foreach($idsPagos as $ids){
+            // echo $ids.'<br>';
+            $pago =  Pago::find($ids);
+
+            $pago->estado =  "Pagado";
+
+            $pago->save();
+        }
+
+        return redirect('User/pagos/'.$user_id);
+
+    }   
 }

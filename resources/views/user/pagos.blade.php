@@ -20,6 +20,7 @@
         <div class="card-body">
             <form action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
                 @csrf
+                <input type="text" value="{{ $datosUsuario->id }}" name="user_id">
                 <!--begin: Datatable-->
                 <div class="table-responsive m-t-40">
                     <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
@@ -42,7 +43,7 @@
                                     $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
                                 }else{
                                     $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
-                                    $verify = 'checked';
+                                    $verify = 'checked disabled';
                                 }
                             @endphp     
                             <tr>
