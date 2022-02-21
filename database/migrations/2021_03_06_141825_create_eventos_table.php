@@ -18,7 +18,9 @@ class CreateEventosTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('nombre', 255)->nullable();
-            $table->text('descripcion')->nullable();
+            $table->text('invitacion')->nullable();
+            $table->text('ordendia')->nullable();
+            $table->text('actareunion')->nullable();
             $table->string('imagen', 150)->nullable();
             $table->datetime('fecha_inicio')->nullable();
             $table->datetime('fecha_fin')->nullable();
