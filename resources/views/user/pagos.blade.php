@@ -1,3 +1,69 @@
+{{-- <!DOCTYPE html>
+<head>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet" href="vendor/DataTables/jquery.datatables.min.css"> 
+<script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<title>Buscar en columnas DataTables (Completo)</title>
+<script>
+$(document).ready(function (){
+    $('#tbl-contact thead th').each(function () {
+        var title = $(this).text();
+        $(this).html(title+' <input type="text" class="col-search-input" placeholder="Search ' + title + '" />');
+    });
+
+    var table = $('#tbl-contact').DataTable({
+    "scrollX": true,
+    "pagingType": "numbers",
+    "processing": true,
+    "serverSide": true,
+    "ajax": "server.php",
+    order: [[2, 'asc']],
+    columnDefs: [{
+    targets: "_all",
+    orderable: false
+    }]
+    });
+
+    table.columns().every(function () {
+        var table = this;
+        $('input', this.header()).on('keyup change', function () {
+            if (table.search() !== this.value) {
+            table.search(this.value).draw();
+            }
+        });
+    });
+});
+
+</script>
+</head>
+
+<body>
+<div class="datatable-container">
+<h2>Buscar en columnas DataTables ServerSide(Completo)</h2>
+<hr>
+<table name="tbl-contact" id="tbl-contact" class="display" cellspacing="0" width="100%">
+
+<thead>
+<tr>
+
+<th>Nombres</th>
+<th>Apellidos</th>
+<th>Dirección</th>
+<th>Teléfono</th>
+<th>Fecha de Nacimiento</th>
+
+</tr>
+</thead>
+
+</table>
+</div>
+</body>
+</html> --}}
+
 @extends('layouts.app')
 
 @section('css')
@@ -66,14 +132,6 @@
                                         </div>
                                         <label class="col-3 col-form-label text-success">Pago</label>
                                     </div>
-                                        
-                                    {{-- <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Pagar')">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </a>
-            
-                                    <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="cambiaPago('{{ $p->id }}', 'Eliminar')">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </a> --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -95,14 +153,67 @@
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script type="text/javascript">
-    	$(document).ready(function() {
-    	    $('#tabla_usuarios').DataTable({
-                language: {
-                    url: '{{ asset('datatableEs.json') }}'
-                },
-                order: [[ 0, "desc" ]]
+
+
+        $(document).ready(function (){
+            $('#tabla_usuarios thead th').each(function () {
+                var title = $(this).text();
+                $(this).html(title+' <input type="text" class="col-search-input" placeholder="Search ' + title + '" />');
             });
-    	} );
+
+            var table = $('#tabla_usuarios').DataTable({
+            "scrollX": true,
+            "pagingType": "numbers",
+            "processing": true,
+            "serverSide": true,
+            "ajax": "server.php",
+            order: [[2, 'asc']],
+            columnDefs: [{
+            targets: "_all",
+            orderable: false
+            }]
+            });
+
+            table.columns().every(function () {
+                var table = this;
+                $('input', this.header()).on('keyup change', function () {
+                    if (table.search() !== this.value) {
+                    table.search(this.value).draw();
+                    }
+                });
+            });
+        });
+
+        // var table = $('#tabla_usuarios').DataTable({
+        //     orderCellsTop: true,
+        //     fixedHeader: true
+        // });
+
+        //   //Creamos una fila en el head de la tabla y lo clonamos para cada columna
+        // $('#tabla_usuarios thead tr').clone(true).appendTo( '#tabla_usuarios thead' );
+        
+        // $('#tabla_usuarios thead tr:eq(1) th').each( function (i) {
+        //     var title = $(this).text(); //es el nombre de la columna
+        //     $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+
+        //     $( 'input', this ).on( 'keyup change', function () {
+        //         if ( table.column(i).search() !== this.value ) {
+        //             table
+        //                 .column(i)
+        //                 .search( this.value )
+        //                 .draw();
+        //         }
+        //     } );
+        // } ); 
+
+    	// $(document).ready(function() {
+    	//     $('#tabla_usuarios').DataTable({
+        //         language: {
+        //             url: '{{ asset('datatableEs.json') }}'
+        //         },
+        //         order: [[ 0, "desc" ]]
+        //     });
+    	// } );
 
         function asiste(user_id, evento_id)
         {
