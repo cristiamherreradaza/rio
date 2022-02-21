@@ -213,5 +213,59 @@ class UserController extends Controller
 
         return redirect('User/pagos/'.$user_id);
 
-    }   
+    }  
+    
+    public function listadoAdmin(Request $request){
+        $users = User::whereNull('categoria_id')->get();
+
+        return view('user.listadoAdmin')->with(compact('users'));
+    }
+
+    public function nuevoAdmin(Request $request, $user_id){
+
+        if($user_id == 0){
+            $usuario =  null;
+        }else{
+            $usuario =  User::find($user_id);
+        }
+
+        $categorias = Categoria::all();
+
+        return view('user.nuevoAdmin')->with(compact('categorias','usuario'));      
+    }
+
+    public function guardaAdmin(Request $request){
+
+        // dd($request->all());
+
+        if($request->user_id != 0 ){
+            $persona = User::find($request->user_id);
+        }else{
+            $persona = new User();
+        }
+
+        // dd($persona);
+
+        $persona->perfil           = $request->perfil;
+        $persona->name             = $request->nombre;
+        $persona->ci               = $request->ci;
+        $persona->email            = $request->email;
+        if($request->has('password')){
+            $persona->password         = Hash::make($request->password);
+        }
+        $persona->fecha_nacimiento = $request->fecha_nacimiento;
+        $persona->direccion        = $request->direccion;
+        $persona->celulares        = $request->celulares;
+        $persona->save();
+
+        return redirect('User/listadoAdmin');
+    }
+
+    public function editaAdmin(Request $request, $user_id){
+
+        // $datosUsuario = User::findOrFail($id);
+        // $categorias = Categoria::all();
+
+        // return view('user.edita')->with(compact('datosUsuario', 'categorias'));   
+    }
 }
