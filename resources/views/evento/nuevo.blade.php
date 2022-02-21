@@ -75,18 +75,44 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12">
+<<<<<<< HEAD
                             <div class="form-group">
                                 <label for="exampleInputPassword1">INVITACION</label>
                                 <textarea name="invitacion" id="invitacion" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
+=======
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="imagen" id="customFile" />
+                                <label class="custom-file-label" for="customFile">Subir Archivo</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+>>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="exampleInputPassword1">ORDEN DEL DIA</label>
                                 <textarea name="ordendia" id="ordendia" cols="30" rows="10" class="form-control"></textarea>
+=======
+                                <label for="exampleInputPassword1">INVITACION</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ORDEN DEL DIA</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+>>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
                             </div>
                         </div>
                     </div>
@@ -95,9 +121,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">ACTA DE REUNION</label>
+<<<<<<< HEAD
                                 <textarea name="actareunion" id="actareunion" cols="30" rows="10" class="form-control"></textarea>
+=======
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+>>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
                             </div>
                         </div>
+
                     </div>
 
                     <br />
@@ -124,13 +156,27 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('assets/js/pages/crud/file-upload/dropzonejs.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             // definimos cabecera donde estarra el token y poder hacer nuestras operaciones de put,post...
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $(function() {
+  
+            $('#kt-tinymce-4').tinymce({ 
+                height: 500,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+            });
         });
 
         function guarda()
@@ -145,6 +191,7 @@
             }
         }
 
+<<<<<<< HEAD
         function canbiaDepartamento()
         {
             let departamento = $("#departamento").val();
@@ -221,5 +268,7 @@
             $("#customFile_"+numero).val('');
         }
 
+=======
+>>>>>>> ef2df29b457bb72d830f26c781bc94804227e3f6
     </script>
 @endsection
