@@ -62,22 +62,45 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Descripcion</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="imagen" id="customFile" />
                                 <label class="custom-file-label" for="customFile">Subir Archivo</label>
                             </div>
                         </div>
                     </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">INVITACION</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ORDEN DEL DIA</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ACTA DE REUNION</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" class="form-control"></textarea>
+                                {{-- <textarea name="descripcion" name="kt-tinymce-4" class="tox-target"></textarea> --}}
+                            </div>
+                        </div>
+
+                    </div>
+
                     <br />
 
                     <div class="row">
@@ -102,13 +125,27 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('assets/js/pages/crud/file-upload/dropzonejs.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             // definimos cabecera donde estarra el token y poder hacer nuestras operaciones de put,post...
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $(function() {
+  
+            $('#kt-tinymce-4').tinymce({ 
+                height: 500,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+            });
         });
 
         function guarda()
@@ -121,22 +158,6 @@
             }else{
                 $("#formularioPersona")[0].reportValidity();
             }
-        }
-
-        function canbiaDepartamento()
-        {
-            let departamento = $("#departamento").val();
-
-            $.ajax({
-                url: "{{ url('User/ajaxDistrito') }}",
-                data: {departamento: departamento},
-                type: 'POST',
-                success: function(data) {
-                    $("#ajaxDistritos").html(data);
-                    // $("#listadoProductosAjax").html(data);
-                }
-            });
-
         }
 
     </script>
