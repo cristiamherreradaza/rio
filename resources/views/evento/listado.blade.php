@@ -3,6 +3,9 @@
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet">
 @endsection
+@section('metadatos')
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
 
 @section('content')
 	<!--begin::Card-->
@@ -33,23 +36,23 @@
 			</div>
 		</div>
 		<div class="card-body">
+			<div class="row">
+				<div class="col-md-4">
+					<label for="">Nombre</label>
+					<input type="text" class="form-control" name="nombre" id="nombre">
+				</div>
+				<div class="col-md-4">
+					<label for="">Fecha</label>
+					<input type="date" class="form-control" name="fecha" id="fecha">
+				</div>
+				<div class="col-md-4">
+					<p style="margin-top: 27px"></p>
+					<button class="btn btn-success btn-block" onclick="buscarEvento()"><i class="fa fa-search"></i> Buscar</button>
+				</div>
+			</div>
 			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40">
-				<table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nombre</th>
-							<th>Descripcion</th>
-							<th>Fecha Inicio</th>
-							<th>Fecha Fin</th>
-							<th>Tipo</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+			<div id="tabla-eventos">
+
 			</div>
 			<!--end: Datatable-->
 		</div>
@@ -60,26 +63,32 @@
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script type="text/javascript">
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
     	$(document).ready(function() {
-    	    $('#tabla_usuarios').DataTable({
-				iDisplayLength: 10,
-				processing: true,
-				serverSide: true,
-				ajax: "{{ url('Evento/ajax_listado') }}",
-				"order": [[ 0, "desc" ]],
-				columns: [
-					{data: 'id', name: 'id'},
-					{data: 'nombre', name: 'nombre'},
-					{data: 'invitacion', name: 'invitacion'},
-					{data: 'fecha_inicio', name: 'fecha_inicio'},
-					{data: 'fecha_fin', name: 'fecha_fin'},
-					{data: 'tipo', name: 'tipo'},
-					{data: 'action'},
-				],
-                language: {
-                    url: '{{ asset('datatableEs.json') }}'
-                }
-            });
+			buscarEvento();
+    	    // $('#tabla_usuarios').DataTable({
+			// 	iDisplayLength: 10,
+			// 	processing: true,
+			// 	serverSide: true,
+			// 	ajax: "{{ url('Evento/ajax_listado') }}",
+			// 	"order": [[ 0, "desc" ]],
+			// 	columns: [
+			// 		{data: 'id', name: 'id'},
+			// 		{data: 'nombre', name: 'nombre'},
+			// 		{data: 'invitacion', name: 'invitacion'},
+			// 		{data: 'fecha_inicio', name: 'fecha_inicio'},
+			// 		{data: 'fecha_fin', name: 'fecha_fin'},
+			// 		{data: 'tipo', name: 'tipo'},
+			// 		{data: 'action'},
+			// 	],
+            //     language: {
+            //         url: '{{ asset('datatableEs.json') }}'
+            //     }
+            // });
     	} );
 
 		function edita(id)
@@ -124,5 +133,23 @@
         {
         	window.location.href = "{{ url('Evento/asistencia') }}/"+id;
         }
+
+		function buscarEvento(){
+			var nombre =  $("#nombre").val();
+			var fecha  =  $("#fecha").val();
+
+			$.ajax({
+                url: "{{ url('Evento/ajax_listado') }}",
+                data: {
+					nombre: nombre,
+					fecha:  fecha
+				},
+                type: 'POST',
+                success: function(data) {
+                    $("#tabla-eventos").html(data);
+                    // $("#listadoProductosAjax").html(data);
+                }
+            });
+		}
     </script>
 @endsection

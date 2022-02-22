@@ -61,7 +61,7 @@ Route::get('User/eliminaAdmin/{user_id}', 'UserController@eliminaAdmin');
 
 // EVENTOS
 Route::get('Evento/listado', 'EventoController@listado');
-Route::get('Evento/ajax_listado', 'EventoController@ajax_listado');
+Route::post('Evento/ajax_listado', 'EventoController@ajax_listado');
 Route::get('Evento/nuevo', 'EventoController@nuevo');
 Route::get('Evento/nuevo', 'EventoController@nuevo');
 Route::get('Evento/edita/{id}', 'EventoController@edita');

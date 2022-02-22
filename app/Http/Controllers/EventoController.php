@@ -21,21 +21,47 @@ class EventoController extends Controller
         return view('evento.listado');
     }
 
-    public function ajax_listado()
+    public function ajax_listado(Request $request)
     {
-        $eventos = Evento::all();
-        return Datatables::of($eventos)
-                ->addColumn('action', function($eventos){
-                    return '<a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('.$eventos->id.')">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asistencia('.$eventos->id.')">
-                                <i class="fas fa-list-alt"></i>
-                            </a>
-                            <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$eventos->id.', \''.$eventos->nombre.'\')">
-                                <i class="flaticon2-delete"></i>
-                            </a>';
-                })->make(true);
+
+        // dd($request->input('nombre'));
+        $query = Evento::orderBy('id', 'desc');
+
+        if ($request->filled('nombre')) {
+            $nombre = $request->input('nombre');
+            $query->where('nombre', 'like', "%$nombre%");
+        }
+
+        if ($request->filled('fecha')) {
+            $fecha_ini = $request->input('fecha')." 00:00:00";
+            $fecha_fin = $request->input('fecha')." 23:59:59";
+            $query->whereBetween('fecha_inicio', [$fecha_ini,$fecha_fin]);
+        }
+
+        if ($request->filled('nombre') || $request->filled('fecha')) {
+            $query->limit(300);
+        }else{
+            $query->limit(200);
+        }
+
+        
+        $eventos = $query->get();
+        
+        return view('evento.ajaxListado')->with(compact('eventos'));
+
+        // $eventos = Evento::all();
+        // return Datatables::of($eventos)
+        //         ->addColumn('action', function($eventos){
+        //             return '<a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('.$eventos->id.')">
+        //                         <i class="fas fa-edit"></i>
+        //                     </a>
+        //                     <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asistencia('.$eventos->id.')">
+        //                         <i class="fas fa-list-alt"></i>
+        //                     </a>
+        //                     <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$eventos->id.', \''.$eventos->nombre.'\')">
+        //                         <i class="flaticon2-delete"></i>
+        //                     </a>';
+        //         })->make(true);
     }
 
     public function nuevo()
@@ -60,9 +86,11 @@ class EventoController extends Controller
         }
 
         
-        $evento->user_id    = Auth::user()->id;
-        $evento->nombre     = $request->nombre;
-        $evento->invitacion = $request->invitacion;
+        $evento->user_id     = Auth::user()->id;
+        $evento->nombre      = $request->nombre;
+        $evento->invitacion  = $request->invitacion;
+    $evento->ordendia        = $request->ordendia;
+        $evento->actareunion = $request->actareunion;
         if($request->imagen != null){
             $evento->imagen = $nombreArchivo;
         }

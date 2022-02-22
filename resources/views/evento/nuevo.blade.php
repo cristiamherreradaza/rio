@@ -232,8 +232,9 @@
         }
 
         function mueveImagen(numero){
-            $("#thumbnil_"+numero).attr('src', "{{ asset('assets/blanco.jpg') }}");
-            $("#customFile_"+numero).val('');
+            $("#thumbnil_"+numero).attr('src', "{{ asset('blanco.jpg') }}");
+            $("#customFile").val('');
+            // $("#customFile_"+numero).val('');
         }
 
     </script>
