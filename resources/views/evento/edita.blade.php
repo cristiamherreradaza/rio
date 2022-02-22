@@ -73,17 +73,6 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Descripcion</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->descripcion }}</textarea>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-6">
                             <img src="{{ asset("imagenesEventos/$datosEvento->imagen") }}" width="50%" alt="">
                         </div>
@@ -95,6 +84,33 @@
                         </div>
                     </div>
                     <br />
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">INVITACION</label>
+                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->invitacion }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ORDEN DEL DIA</label>
+                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->ordendia }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">ACTA DE REUNION</label>
+                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->actareunion }}</textarea>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -104,7 +120,7 @@
                             <a href="{{ url('User/listado') }}" class="btn btn-secondary btn-block">Volver</a>
                         </div>
                     </div>
-
+                    
                 </div>
                 
             </form>

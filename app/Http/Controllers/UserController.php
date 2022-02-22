@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\User;
+use PDF;
 use App\Pago;
+use App\User;
+use App\Recibo;
 use App\Sector;
 use DataTables;
 use App\Categoria;
+// use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -196,11 +201,12 @@ class UserController extends Controller
     }
 
     public function guarda_pago(Request $request){
-        // dd($request->all());
-        // dd(array_keys($request->select));
+
         $user_id = $request->input('user_id');
 
         $idsPagos = array_keys($request->select);
+
+        $total = 0 ;
 
         foreach($idsPagos as $ids){
             // echo $ids.'<br>';
@@ -208,10 +214,54 @@ class UserController extends Controller
 
             $pago->estado =  "Pagado";
 
+            $total = $total + $pago->monto ;
+
             $pago->save();
         }
 
-        return redirect('User/pagos/'.$user_id);
+        $recibo = new Recibo();
+
+        $persona = User::find($user_id);
+
+        $recibo->user_id        = Auth::user()->id;
+        $recibo->persona_id     = $persona->id;
+        $recibo->carnet         = $persona->ci;
+        $recibo->fecha          = date('Y-m-d');
+        $recibo->total          = $total;
+
+        $ultimo = DB::table('recibos')->latest()->first();
+
+        if($ultimo){
+            $numero = $ultimo->numero + 1 ;
+        }else{
+            $numero = 1;
+        }
+
+        // dd($numero);
+
+        $recibo->numero               = $numero;
+        $recibo->numero_recibo        = strval($numero."/".date('Y'));
+        $recibo->anio                 = date('Y');
+
+        $recibo->save();
+
+        foreach($idsPagos as $ids){
+
+            $pago =  Pago::find($ids);
+
+            $pago->recibo_id = $recibo->id;
+
+            $pago->save();
+        }
+
+        $reciboFin = $recibo;
+        $usuario = User::find($user_id);
+
+        $pdf = PDF::loadView('user.reciboPdf', compact('reciboFin', 'usuario'));
+        $pdf->setPaper('letter', 'portrait');
+
+        // download PDF file with download method
+        return $pdf->stream('recibo.pdf');
 
     }  
     
