@@ -13,13 +13,13 @@
 	<div class="card card-custom gutter-b">
 		<div class="card-header flex-wrap py-3">
 			<div class="card-title">
-				<h3 class="card-label">Usuarios
+				<h3 class="card-label">Socios
 				</h3>
 			</div>
 			<div class="card-toolbar">
 				<!--begin::Button-->
 				<a href="{{ url('User/nuevo') }}" class="btn btn-primary font-weight-bolder">
-					<i class="fas fa-plus-square"></i> Usuario</a>
+					<i class="fas fa-plus-square"></i> Socio</a>
 					&nbsp;
 				<a href="#" class="btn btn-success font-weight-bolder" onclick="muestraBarra();">
 					<i class="fas fa-search"></i> </a>
