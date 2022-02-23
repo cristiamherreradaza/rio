@@ -19,7 +19,7 @@ class PublicacionesController extends Controller
     public function eventos(){
 
         $eventos = Evento::latest()
-                    ->take(20)
+                    ->take(8)
                     ->orderBy('id', 'desc')
                     ->get();       
         //dd($eventos);
