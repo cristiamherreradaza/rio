@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
+            <form target="_blank" action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
                 @csrf
                 <input type="hidden" value="{{ $datosUsuario->id }}" name="user_id">
                 <!--begin: Datatable-->
@@ -86,7 +86,7 @@
                 <!--end: Datatable-->
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-block btn-success"><i class="fa fa-money-check"></i> PAGAR</button>
+                        <button type="button" onclick="pagar()" class="btn btn-block btn-success"><i class="fa fa-money-check"></i> PAGAR</button>
                     </div>
                 </div>
             </form>
@@ -178,7 +178,8 @@
         }
 
         function pagar(){
-            console.log("pagar");
+            $("#formularioPersona").submit();
+            window.location.href = "{{ url('User/listado')}}"
         }
     </script>
 @endsection

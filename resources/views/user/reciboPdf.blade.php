@@ -99,6 +99,18 @@
         }
         .datos tr:nth-child(even) {background-color: #f2f2f2;}
         /*fin de estilos para tablas de datos*/
+        #logo{
+            position: absolute;
+            max-width: 150px;
+            margin-top: 35px;
+        }
+        #recibo{
+            position: absolute;
+            font-size: 25px;
+            margin-top: 60px;
+            float: right;
+            /* text-align: right; */
+        }
     </style>
 
 
@@ -106,8 +118,15 @@
 <body>
 <br/>
     <div class="invoice">
-        <h3 align="center" style="margin-top: 180px; font-size: 30px;">RECIBO DE PAGO</h3>
-         <table width="100%"  style=" margin-top: 10px; margin-bottom: 15px;">
+        <div id="logo">
+            <img src="{{ asset("img/logo.png") }}" width="100%" alt=" aqui la imagen">
+        </div>
+        <div id="recibo">
+            <h3>RECIBO No. {{ str_pad($reciboFin->numero, 4, '0', STR_PAD_LEFT) }}/{{ $reciboFin->anio }}</h3>
+        </div>
+        {{-- <img src="{{ asset("img/logo.png") }} " id="logo" alt=" aqui la imagen"> --}}
+        {{-- <h3 id="recibo">RECIBO No. {{ str_pad($reciboFin->numero, 4, '0', STR_PAD_LEFT) }}/{{ $reciboFin->anio }}</h3> --}}
+         <table width="100%"  style=" margin-top: 220px; margin-bottom: 15px;">
             <tr>
                 <td align="left" width="40"  style=" margin-top: 20px; font-size: 12px; width: 60%; float: right;">                
                     <b>  Doctor: </b> {{ $usuario->name }}                                 
@@ -115,8 +134,12 @@
                <td align="left" width="30">                
                                                  
                 </td>
+                @php
+                    $utilidades = new App\librerias\Utilidades();
+                    $fecha = $utilidades->fechaCastellano($reciboFin->fecha);
+                @endphp
 
-                <td align="right"  style=" font-size: 12px; float: left;"><b>Fecha:</b> {{ $reciboFin->fecha }} 
+                <td align="right"  style=" font-size: 12px; float: left;"><b>Fecha:</b> {{ $fecha }} 
                 </td>
             
             </tr>
@@ -127,7 +150,6 @@
                    
                     <th style="border: 1px solid #000;">Cantidad</th> 
                     <th style="border: 1px solid #000;">Descripcion</th> 
-                    <th style="border: 1px solid #000;">Precio Unitario</th>
                     <th style="border: 1px solid #000;">Sub Total</th>
                 </tr>
             </thead>
@@ -139,13 +161,16 @@
                     <tr>
                         <td style="border: 1px solid #000;">1</td>
                         <td style="border: 1px solid #000;">Pago de Mensualidad de {{ $p->mes }}</td>
-                        <td style="border: 1px solid #000;">{{ $p->monto }}</td>
-                        <td style="border: 1px solid #000;">{{ $p->monto }}</td>                        
+                        <td style="border: 1px solid #000;text-align: right;">{{ $p->monto }}</td>                        
                     </tr>
                 @endforeach
                 <tr>
-                    <th style="border: 1px solid #000;" colspan="3">TOTAL</th> 
-                    <th style="border: 1px solid #000; text-align: right;">{{ $reciboFin->total }} Bs.</th>
+                    @php
+                        $utilidades = new App\librerias\NumeroALetras();
+                        $literal = $utilidades->toMoney($reciboFin->total);
+                    @endphp
+                    <td style="border: 1px solid #000;text-align: left;" colspan="2" >Son: {{ $literal }} 00/100 Bolivianos</td> 
+                    <th style="border: 1px solid #000; text-align: right;">{{ number_format($reciboFin->total, 2) }}</th>
                 </tr>
             </tbody>
         </table>
