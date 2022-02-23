@@ -111,6 +111,13 @@
             float: right;
             /* text-align: right; */
         }
+        #descripcion{
+            position: absolute;
+            margin-top: 100px;
+            margin-left: 180px;
+            width: 250px;
+            /* background-color: red; */
+        }
     </style>
 
 
@@ -120,6 +127,16 @@
     <div class="invoice">
         <div id="logo">
             <img src="{{ asset("img/logo.png") }}" width="100%" alt=" aqui la imagen">
+        </div>
+        <div id="descripcion">
+            @php
+                $descripcion = App\Configuracion::where('descripcion',"Recibo")->first();
+                if($descripcion){
+                    echo $descripcion->valor;
+                }else{
+                    echo 'aqui deberia ir la descripcion del recibo en configuraciones';
+                }
+            @endphp
         </div>
         <div id="recibo">
             <h3>RECIBO No. {{ str_pad($reciboFin->numero, 4, '0', STR_PAD_LEFT) }}/{{ $reciboFin->anio }}</h3>
