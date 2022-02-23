@@ -38,8 +38,7 @@
         <h3 class="text-danger">NO EXISTEN DATOS</h3>
         @endforelse
     </tbody>
-    <tbody>
-    </tbody>
+    
 </table>
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script>
