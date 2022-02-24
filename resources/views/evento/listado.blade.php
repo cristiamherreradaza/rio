@@ -51,8 +51,10 @@
 				</div>
 			</div>
 			<!--begin: Datatable-->
-			<div id="tabla-eventos">
+			<div class="table-responsive m-t-40">
+				<div id="tabla-eventos">
 
+				</div>
 			</div>
 			<!--end: Datatable-->
 		</div>
