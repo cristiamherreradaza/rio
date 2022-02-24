@@ -357,8 +357,8 @@ class UserController extends Controller
             $query->where('celulares', $celular);
         }
 
-        $query->orWhere('perfil','Administrador');
-        $query->orWhereNull('perfil');
+        $query->Where('perfil','Administrador');
+        // $query->orWhereNull('perfil');
 
         if ($request->filled('nombre') || $request->filled('carnet') || $request->filled('email') || $request->filled('celular')) {
             $query->limit(300);

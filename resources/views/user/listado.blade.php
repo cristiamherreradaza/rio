@@ -72,9 +72,13 @@
 					</div>
 				</div>
 			</div>
-			<div id="tabla-usuarios">
+			<!--begin: Datatable-->
+			<div class="table-responsive m-t-40">
+				<div id="tabla-usuarios">
 
+				</div>
 			</div>
+			<!--end: Datatable-->
 		
 		</div>
 	</div>
