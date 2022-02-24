@@ -49,7 +49,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email
                                 <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" required />
+                                <input type="email" class="form-control" id="email" name="email" onfocusout="validaEmail()"  required />
+                                <span class="form-text text-danger" id="msg-error-email" style="display: none;">Correo duplicado, cambielo!!!</span>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -66,7 +67,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Direccion
                                 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" required />
+                                <input type="text" class="form-control" id="direccion" name="direccion"/>
                             </div>        
                         </div>
                         
@@ -74,7 +75,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Telefonos
                                 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="celulares" name="celulares" required />
+                                <input type="text" class="form-control" id="celulares" name="celulares"/>
                             </div>
                         </div>
                     </div>
@@ -103,24 +104,23 @@
                     <div class="row">
                         <div class="col-md-12"><h3 class="text-info">Cuotas</h3></div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleSelect1">Mes <span class="text-danger">*</span></label>
                                 <select class="form-control" id="mes" name="mes" required >
-                                    <option value="1">Enero</option>
-                                    <option value="2">Febrero</option>
-                                    <option value="3">Marzo</option>
-                                    <option value="4">Abril</option>
-                                    <option value="5">Mayo</option>
-                                    <option value="6">Junio</option>
-                                    <option value="7">Julio</option>
-                                    <option value="8">Agosto</option>
-                                    <option value="9">Septiembre</option>
-                                    <option value="10">Octubre</option>
-                                    <option value="11">Noviembre</option>
-                                    <option value="12">Diciembre</option>
+                                    <option value="1" {{ (date('m') == 1)? "selected": ""}}>Enero</option>
+                                    <option value="2" {{ (date('m') == 2)? "selected": ""}}>Febrero</option>
+                                    <option value="3" {{ (date('m') == 3)? "selected": ""}}>Marzo</option>
+                                    <option value="4" {{ (date('m') == 4)? "selected": ""}}>Abril</option>
+                                    <option value="5" {{ (date('m') == 5)? "selected": ""}}>Mayo</option>
+                                    <option value="6" {{ (date('m') == 6)? "selected": ""}}>Junio</option>
+                                    <option value="7" {{ (date('m') == 7)? "selected": ""}}>Julio</option>
+                                    <option value="8" {{ (date('m') == 8)? "selected": ""}}>Agosto</option>
+                                    <option value="9" {{ (date('m') == 9)? "selected": ""}}>Septiembre</option>
+                                    <option value="10" {{ (date('m') == 10)? "selected": ""}}>Octubre</option>
+                                    <option value="11" {{ (date('m') == 11)? "selected": ""}}>Noviembre</option>
+                                    <option value="12" {{ (date('m') == 12)? "selected": ""}}>Diciembre</option>
                                 </select>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Importe
                                     <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="importe" name="importe" value="350" required />
+                                <input type="number" class="form-control" id="importe" name="importe" value="{{ $importe->valor }}" required />
                             </div>
                         </div>
                     </div>
@@ -196,6 +196,25 @@
                 }
             });
 
+        }
+
+        function validaEmail()
+        {
+            let email = $("#email").val();
+
+            $.ajax({
+                url: "{{ url('User/validaEmail') }}",
+                data: {email: email},
+                type: 'POST',
+                success: function(data) {
+                    // console.log(data.vEmail);     
+                    if(data.vEmail > 0){
+                        $("#msg-error-email").show();
+                    }else{
+                        $("#msg-error-email").hide();
+                    }
+                }
+            });
         }
 
     </script>

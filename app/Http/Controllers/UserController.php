@@ -9,6 +9,7 @@ use App\Sector;
 use DataTables;
 use App\Categoria;
 // use Barryvdh\DomPDF\PDF;
+use App\Configuracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,10 @@ class UserController extends Controller
     public function nuevo()
     {
         $categorias = Categoria::all();
-        return view('user.nuevo')->with(compact('categorias'));        			
+
+        $importe = Configuracion::find(2);
+
+        return view('user.nuevo')->with(compact('categorias', 'importe'));        			
     }
 
     public function ajaxDistrito(Request $request)
@@ -316,5 +320,14 @@ class UserController extends Controller
         User::destroy($user_id);
         return redirect('User/listadoAdmin');
    
+    }
+
+    public function validaEmail(Request $request)
+    {
+        // dd($request->all());
+        $verificaEmail = User::where('email', $request->email)
+                            ->count();
+
+        return response()->json(['vEmail'=>$verificaEmail]);
     }
 }
