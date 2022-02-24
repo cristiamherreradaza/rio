@@ -28,49 +28,49 @@
 		</div>
 		<div class="card-body">
 			<div id="barra-busqueda" style="display: none">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="exampleInputPassword1">Nombre
-							<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="nombre" name="nombre" />
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Nombre
+								<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="nombre" name="nombre" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Carnet
+								<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="carnet" name="carnet" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Email
+								<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="email" name="email" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Celular
+								<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="celular" name="celular" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Colegiatura
+								<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="colegiatura" name="colegiatura" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<p style="margin-top: 24px"></p>
+							<button class="btn btn-success btn-block"  onclick="buscar()"><i class="fa fa-search"></i>Buscar</button>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="exampleInputPassword1">Carnet
-							<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="carnet" name="carnet" />
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="exampleInputPassword1">Email
-							<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="email" name="email" />
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="exampleInputPassword1">Celular
-							<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="celular" name="celular" />
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="exampleInputPassword1">Colegiatura
-							<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="colegiatura" name="colegiatura" />
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<p style="margin-top: 24px"></p>
-						<button class="btn btn-success btn-block"  onclick="buscar()"><i class="fa fa-search"></i>Buscar</button>
-					</div>
-				</div>
-			</div>
 			</div>
 			<div id="tabla-usuarios">
 

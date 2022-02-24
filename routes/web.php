@@ -56,6 +56,8 @@ Route::post('User/guardaAdmin', 'UserController@guardaAdmin');
 Route::get('User/editaAdmin/{user_id}', 'UserController@editaAdmin');
 Route::get('User/eliminaAdmin/{user_id}', 'UserController@eliminaAdmin');
 Route::post('User/validaEmail', 'UserController@validaEmail');
+Route::post('User/ajax_buscaAdmin', 'UserController@ajax_buscaAdmin');
+
 
 
 

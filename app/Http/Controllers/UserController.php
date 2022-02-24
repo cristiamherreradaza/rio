@@ -192,6 +192,8 @@ class UserController extends Controller
             $query->where('colegiatura', $colegiatura);
         }
 
+        $query->where('perfil','Doctor');
+
         if ($request->filled('nombre') || $request->filled('carnet') || $request->filled('email') || $request->filled('celular') || $request->filled('colegiatura')) {
             $query->limit(300);
         }else{
@@ -329,5 +331,44 @@ class UserController extends Controller
                             ->count();
 
         return response()->json(['vEmail'=>$verificaEmail]);
+    }
+
+    public function ajax_buscaAdmin(Request $request){
+        // dd($request->input('nombre'));
+        $query = User::orderBy('id', 'desc');
+
+        if ($request->filled('nombre')) {
+            $nombre = $request->input('nombre');
+            $query->where('name', 'like', "%$nombre%");
+        }
+
+        if ($request->filled('carnet')) {
+            $carnet = $request->input('carnet');
+            $query->where('ci', $carnet);
+        }
+
+        if ($request->filled('email')) {
+            $email = $request->input('email');
+            $query->where('email', $email);
+        }
+
+        if ($request->filled('celular')) {
+            $celular = $request->input('celular');
+            $query->where('celulares', $celular);
+        }
+
+        $query->orWhere('perfil','Administrador');
+        $query->orWhereNull('perfil');
+
+        if ($request->filled('nombre') || $request->filled('carnet') || $request->filled('email') || $request->filled('celular')) {
+            $query->limit(300);
+        }else{
+            $query->limit(200);
+        }
+
+        
+        $usuarios = $query->get();
+        
+        return view('user.ajax_buscaAdmin')->with(compact('usuarios'));
     }
 }
