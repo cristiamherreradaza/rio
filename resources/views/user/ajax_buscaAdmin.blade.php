@@ -47,5 +47,7 @@
         language: {
             url: '{{ asset('datatableEs.json') }}'
         },
+       
+        responsive: true
     });
 </script>
