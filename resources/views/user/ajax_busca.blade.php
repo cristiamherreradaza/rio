@@ -46,6 +46,7 @@
         order: [[ 0, "desc" ]],
         searching: false,
         lengthChange: false,
+        responsive: true,
         language: {
             url: '{{ asset('datatableEs.json') }}'
         },
