@@ -40,8 +40,6 @@
         <h3 class="text-danger">NO EXISTEN DATOS</h3>
         @endforelse
     </tbody>
-    <tbody>
-    </tbody>
 </table>
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script>
@@ -49,6 +47,7 @@
         order: [[ 0, "desc" ]],
         searching: false,
         lengthChange: false,
+        responsive: true,
         language: {
             url: '{{ asset('datatableEs.json') }}'
         },

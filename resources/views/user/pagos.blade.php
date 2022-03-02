@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     {{-- <label>Large Size</label> --}}
                                     <div class="checkbox-inline">
-                                        <label class="checkbox checkbox-lg  checkbox-success">
+                                        <label class="checkbox checkbox-lg checkbox-success">
                                             <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
                                             <span></span>
                                             {{ $texto }}
