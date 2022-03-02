@@ -53,7 +53,20 @@
                             <td>{{ $p->fecha_pago }}</td>
                             <td>{!! $estado !!}</td>
                             <td nowrap="nowrap">
-                                <div class="form-group row">
+
+                                <div class="form-group">
+                                    {{-- <label>Large Size</label> --}}
+                                    <div class="checkbox-inline">
+                                        <label class="checkbox checkbox-lg  checkbox-success">
+                                            <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
+                                            <span></span>
+                                            {{-- Option 1 --}}
+                                        </label>
+                                    </div>
+                                    {{-- <span class="form-text text-muted">Some help text goes here</span> --}}
+                                </div>
+
+                                {{-- <div class="form-group row">
                                     <label class="col-3 col-form-label text-danger">Debe</label>
                                     <div class="col-3">
                                         <span class="switch switch-primary">
@@ -64,7 +77,7 @@
                                         </span>
                                     </div>
                                     <label class="col-3 col-form-label text-success">Pago</label>
-                                </div>
+                                </div> --}}
                             </td>
                         </tr>
                         @endforeach
