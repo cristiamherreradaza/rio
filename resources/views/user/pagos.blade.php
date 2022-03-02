@@ -111,6 +111,7 @@
                 language: {
                     url: '{{ asset('datatableEs.json') }}'
                 },
+                order: [[ 0, "desc" ]],
                 responsive: true,                
             });
 
