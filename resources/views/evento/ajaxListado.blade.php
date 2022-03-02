@@ -25,13 +25,13 @@
             <td>{{ $even->fecha_fin }}</td>
             <td>{{ $even->tipo }}</td>
             <td>
-                <a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('{{ $even->id }}')">
+                <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $even->id }}')">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asistencia('.$eventos->id.')">
+                <a href="#" class="btn btn-icon btn-success" onclick="asistencia('.$eventos->id.')">
                     <i class="fas fa-list-alt"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('{{ $even->id }}', '{{ $even->name }}')">
+                <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $even->id }}', '{{ $even->name }}')">
                     <i class="flaticon2-delete"></i>
                 </a>
             </td>
