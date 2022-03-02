@@ -100,7 +100,14 @@
 									<!--begin::Header Nav-->
 									<ul class="menu-nav">
 										<li class="menu-item menu-item-submenu menu-item-rel menu-item-active" data-menu-toggle="click" aria-haspopup="true">
-											<span class="text-primary">Aqui la fecha</span>											
+											<span class="text-primary">
+											@php
+											$hoy = date("Y-m-d");
+											$utilidades = new App\librerias\Utilidades();
+											echo $utilidades->fechaCastellano($hoy);
+											@endphp
+											- <span id="HoraActual"></span>	
+											</span>											
 										</li>
 									</ul>
 									<!--end::Header Nav-->
@@ -448,6 +455,25 @@
 		<script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
+
+		<script>
+			// JavaScript code
+			showTime();
+			function showTime(){
+			myDate = new Date();
+			hours = myDate.getHours();
+			minutes = myDate.getMinutes();
+			seconds = myDate.getSeconds();
+			if (hours < 10) hours = 0 + hours;
+
+			if (minutes < 10) minutes = "0" + minutes;
+
+			if (seconds < 10) seconds = "0" + seconds;
+
+			$("#HoraActual").text(hours+ ":" +minutes+ ":" +seconds);
+			setTimeout("showTime()", 1000);
+			}
+		</script>
 
 		@section('js')
 		@show
