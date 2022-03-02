@@ -245,6 +245,15 @@
 								<span class="menu-text">Parametros</span>
 							</a>
 						</li>
+
+						<li class="menu-item" aria-haspopup="true">
+							<a href="{{ url('Configuracion/listado') }}" class="menu-link">
+								<i class="menu-bullet menu-bullet-dot">
+									<span></span>
+								</i>
+								<span class="menu-text">configuracion</span>
+							</a>
+						</li>
 			
 					</ul>
 				</div>

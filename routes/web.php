@@ -78,4 +78,7 @@ Route::get('Categoria/listado', 'CategoriaController@listado');
 Route::post('Categoria/guarda', 'CategoriaController@guarda');
 Route::get('Categoria/elimina/{categoria_id}', 'CategoriaController@elimina');
 
-
+//CONFIGURACION
+Route::get('Configuracion/listado', 'ConfiguracionController@listado');
+Route::post('Configuracion/guarda', 'ConfiguracionController@guarda');
+Route::get('Configuracion/elimina/{configuracion_id}', 'ConfiguracionController@elimina');
