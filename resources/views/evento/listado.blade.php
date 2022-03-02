@@ -20,35 +20,39 @@
 				<a href="{{ url('Evento/nuevo') }}" class="btn btn-primary font-weight-bolder">
 					<i class="fas fa-plus-square"></i> Evento
 				</a>
+				&nbsp;
+				<a href="#" class="btn btn-success font-weight-bolder" onclick="muestraBarra();">
+									<i class="fas fa-search"></i> </a>
 				<!--end::Button-->
 			</div>
 		</div>
 		<div class="card-body">
+		    <div id="barra-busqueda" style="display: none">
+		        <div class="row">
+		            <div class="col-md-4">
+		                <label for="">Nombre</label>
+		                <input type="text" class="form-control" name="nombre" id="nombre">
+		            </div>
 
-			<div class="row">
-				<div class="col-md-4">
-					<label for="">Nombre</label>
-					<input type="text" class="form-control" name="nombre" id="nombre">
-				</div>
+		            <div class="col-md-4">
+		                <label for="">Fecha</label>
+		                <input type="date" class="form-control" name="fecha" id="fecha">
+		            </div>
 
-				<div class="col-md-4">
-					<label for="">Fecha</label>
-					<input type="date" class="form-control" name="fecha" id="fecha">
-				</div>
+		            <div class="col-md-4">
+		                <p style="margin-top: 27px"></p>
+		                <button class="btn btn-success btn-block" onclick="buscarEvento()"><i class="fa fa-search"></i>
+		                    Buscar</button>
+		            </div>
+		        </div>
+		    </div>
+		    <!--begin: Datatable-->
+		    <div id="tabla-eventos">
 
-				<div class="col-md-4">
-					<p style="margin-top: 27px"></p>
-					<button class="btn btn-success btn-block" onclick="buscarEvento()"><i class="fa fa-search"></i> Buscar</button>
-				</div>
-			</div>
+		    </div>
+		    <!--end: Datatable-->
 
-			<!--begin: Datatable-->
-			<div id="tabla-eventos">
-
-			</div>
-			<!--end: Datatable-->
 		</div>
-
 	</div>
 	<!--end::Card-->
 @stop
@@ -128,6 +132,10 @@
         }
 
 		function buscarEvento(){
+			
+			var this_item = document.getElementById('barra-busqueda');
+			this_item.style.display = 'none';
+
 			var nombre =  $("#nombre").val();
 			var fecha  =  $("#fecha").val();
 
@@ -144,5 +152,16 @@
                 }
             });
 		}
+
+		function muestraBarra(){
+			var this_item = document.getElementById('barra-busqueda'); 
+			if( this_item.style.display == 'block' ) {
+				this_item.style.display = 'none';
+			}
+			else {
+				this_item.style.display = 'block';
+			}
+		}
+
     </script>
 @endsection
