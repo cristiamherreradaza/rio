@@ -3,6 +3,29 @@
 	<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 		<!--begin::Menu Nav-->
 		<ul class="menu-nav">
+
+			<li>
+				<div class="text-center mb-10">
+					<div class="symbol symbol-60 symbol-circle">
+						<div class="symbol-label" style="background-image:url('{{ url('assets/media/users/fotoPerfil.jpg') }}')">
+						</div>
+						<i class="symbol-badge symbol-badge-bottom bg-success"></i>
+					</div>
+					@auth
+					<h4 class="font-weight-bold my-2 text-success">{{ Auth::user()->name }}</h4>
+					<div class="text-light mb-2">{{ Auth::user()->perfil }}</div>
+					
+					<br />
+					<a href="{{ route('logout') }}"
+						onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+						class="label label-light-danger label-inline font-weight-bold label-lg">Salir</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+						@csrf
+					</form>
+					@endauth
+				</div>
+			</li> 
+
 			<li class="menu-item" aria-haspopup="true">
 				<a href="index.html" class="menu-link">
 					<span class="svg-icon menu-icon">
