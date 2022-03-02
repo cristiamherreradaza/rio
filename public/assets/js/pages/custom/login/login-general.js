@@ -168,8 +168,11 @@ var KTLogin = function() {
 
             validation.validate().then(function(status) {
 		        if (status == 'Valid') {
+
+					$('#kt_login_signup_form').submit();
+
                     swal.fire({
-		                text: "All is cool! Now you submit this form",
+		                text: "Bienvenido! Espera tu confirmacion",
 		                icon: "success",
 		                buttonsStyling: false,
 		                confirmButtonText: "Ok, lo corrigo!",
@@ -178,7 +181,9 @@ var KTLogin = function() {
     					}
 		            }).then(function() {
 						KTUtil.scrollTop();
+						
 					});
+
 				} else {
 					swal.fire({
 		                text: "Lo siento, hay campos incorrectos, corrigelos.",

@@ -82,3 +82,6 @@ Route::get('Categoria/elimina/{categoria_id}', 'CategoriaController@elimina');
 Route::get('Configuracion/listado', 'ConfiguracionController@listado');
 Route::post('Configuracion/guarda', 'ConfiguracionController@guarda');
 Route::get('Configuracion/elimina/{configuracion_id}', 'ConfiguracionController@elimina');
+
+//MEDICOS
+Route::post('Medico/registro', 'MedicoController@registro');

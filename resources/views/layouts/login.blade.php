@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	{{-- <base href="../../../../"> --}}
 	<meta charset="utf-8" />
-	<title>Login Page 2 | Keenthemes</title>
+	<title>RIO</title>
 	<meta name="description" content="Login page example" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href=" {{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 	<!--end::Layout Themes-->
 	<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -64,7 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="login-form login-signin">
 
 							<div class="text-center mb-10 mb-lg-20">
-								<h2 class="font-weight-bold">FORMULARIO DE INGRESO</h2>
+								<h2 class="font-weight-bold text-primary">FORMULARIO DE INGRESO</h2>
 								{{-- <p class="text-muted font-weight-bold">Enter your username and password</p> --}}
 							</div>
 
@@ -77,58 +78,40 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signup-->
 						<div class="login-form login-signup">
 							<div class="text-center mb-10 mb-lg-20">
-								<h3 class="">FORMULARIO DE REGISTRO</h3>
+								<h2 class="font-weight-bold text-success">FORMULARIO DE REGISTRO</h2>
 								{{-- <p class="text-muted font-weight-bold">Enter your details to create your account</p> --}}
 							</div>
 							<!--begin::Form-->
-							<form class="form" action="{{ url('User/guarda') }}" method="POST" novalidate="novalidate" id="kt_login_signup_form">
+							<form class="form" action="{{ url('Medico/registro') }}" method="POST" novalidate="novalidate" id="kt_login_signup_form">
 								@csrf
 								<div class="form-group py-3 m-0">
 									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="text"
-										placeholder="Nombre Completo" name="name" autocomplete="off" />
+										placeholder="Nombre Completo" name="name-registro" autocomplete="off" />
 								</div>
+
 								<div class="form-group py-3 border-top m-0">
 									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email"
-										placeholder="Email" name="email" autocomplete="off" onfocusout="validaEmail()" />
+										placeholder="Email" name="email-registro" id="email-registro" autocomplete="off" onfocusout="validaEmail()" />
 
 										<span class="form-text text-danger" id="msg-error-email" style="display: none;">Correo duplicado, cambielo!!!</span>
 								</div>
 								<div class="form-group py-3 border-top m-0">
 									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
-										placeholder="Password" name="password" autocomplete="off" />
+										placeholder="Password" name="password-registro" autocomplete="off" />
 								</div>
 								
 								<div class="form-group d-flex flex-wrap flex-center">
 									<button id="kt_login_signup_submit"
-										class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Registro</button>
+										class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-2">REGISTRARME</button>
 									<button id="kt_login_signup_cancel"
-										class="btn btn-outline-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancelar</button>
+										class="btn btn-outline-primary font-weight-bold px-9 py-4 my-3 mx-2">CANCELAR</button>
 								</div>
 							</form>
 							<!--end::Form-->
 						</div>
 						<!--end::Signup-->
 						<!--begin::Forgot-->
-						<div class="login-form login-forgot">
-							<div class="text-center mb-10 mb-lg-20">
-								<h3 class="">Forgotten Password ?</h3>
-								<p class="text-muted font-weight-bold">Enter your email to reset your password</p>
-							</div>
-							<!--begin::Form-->
-							<form class="form" novalidate="novalidate" id="kt_login_forgot_form">
-								<div class="form-group py-3 border-bottom mb-10">
-									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email"
-										placeholder="Email" name="email" autocomplete="off" />
-								</div>
-								<div class="form-group d-flex flex-wrap flex-center">
-									<button id="kt_login_forgot_submit"
-										class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Submit</button>
-									<button id="kt_login_forgot_cancel"
-										class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
-								</div>
-							</form>
-							<!--end::Form-->
-						</div>
+						
 						<!--end::Forgot-->
 					</div>
 					<!--end::Aside body-->
@@ -178,9 +161,16 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Page Scripts(used by this page)-->
 	<script src="{{ asset('assets/js/pages/custom/login/login-general.js') }}"></script>
 	<script>
+		 $.ajaxSetup({
+            // definimos cabecera donde estarra el token y poder hacer nuestras operaciones de put,post...
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 		function validaEmail()
         {
-            let email = $("#email").val();
+			// alert('entro');
+            let email = $("#email-registro").val();
 
             $.ajax({
                 url: "{{ url('User/validaEmail') }}",
@@ -190,8 +180,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     // console.log(data.vEmail);     
                     if(data.vEmail > 0){
                         $("#msg-error-email").show();
+                        $("#kt_login_signup_submit").hide();
                     }else{
-                        $("#msg-error-email").hide();
+						$("#msg-error-email").hide();
+                        $("#kt_login_signup_submit").show();
                     }
                 }
             });
