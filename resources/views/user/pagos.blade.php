@@ -41,16 +41,18 @@
                             if($p->estado == 'Debe'){
                                 $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
                                 $texto = 'Pagar';
+                                $color = 'text-danger';
                             }else{
                                 $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
                                 $verify = 'checked disabled';
                                 $texto = 'Pagado';
+                                $color = 'text-success';
                             }
                         @endphp     
                         <tr>
                             <td>{{ $p->id }}</td>
                             <td>{{ $p->gestion }}</td>
-                            <td>{{ $p->mes }}</td>
+                            <td><span class="{{ $color }} h5">{{ $p->mes }}</span></td>
                             <td>{{ $p->monto }}</td>
                             <td>{{ $p->fecha_pago }}</td>
                             <td>{!! $estado !!}</td>
@@ -84,17 +86,6 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gestion</th>
-                            <th>Mes</th>
-                            <th>Monto</th>
-                            <th>Fecha Pago</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
                 </table>
                 <!--end: Datatable-->
                 <div class="row">
