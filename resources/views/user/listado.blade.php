@@ -73,10 +73,8 @@
 				</div>
 			</div>
 			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40">
-				<div id="tabla-usuarios">
+			<div id="tabla-usuarios">
 
-				</div>
 			</div>
 			<!--end: Datatable-->
 		
