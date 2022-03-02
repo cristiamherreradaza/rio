@@ -22,67 +22,65 @@
                 @csrf
                 <input type="hidden" value="{{ $datosUsuario->id }}" name="user_id">
                 <!--begin: Datatable-->
-                <div class="table-responsive m-t-40">
-                    <table class="table table-bordered table-hover table-striped" id="tabla_pagos">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Gestion</th>
-                                <th>Mes</th>
-                                <th>Monto</th>
-                                <th>Fecha Pago</th>
-                                <th>Estado</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($pagos as $p)
-                            @php
-                                $verify = '';
-                                if($p->estado == 'Debe'){
-                                    $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
-                                }else{
-                                    $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
-                                    $verify = 'checked disabled';
-                                }
-                            @endphp     
-                            <tr>
-                                <td>{{ $p->id }}</td>
-                                <td>{{ $p->gestion }}</td>
-                                <td>{{ $p->mes }}</td>
-                                <td>{{ $p->monto }}</td>
-                                <td>{{ $p->fecha_pago }}</td>
-                                <td>{!! $estado !!}</td>
-                                <td nowrap="nowrap">
-                                    <div class="form-group row">
-                                        <label class="col-3 col-form-label text-danger">Debe</label>
-                                        <div class="col-3">
-                                            <span class="switch switch-primary">
-                                                <label>
-                                                <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
-                                                <span></span>
-                                                </label>
-                                            </span>
-                                        </div>
-                                        <label class="col-3 col-form-label text-success">Pago</label>
+                <table class="table table-bordered table-hover table-striped" id="tabla_pagos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Gestion</th>
+                            <th>Mes</th>
+                            <th>Monto</th>
+                            <th>Fecha Pago</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pagos as $p)
+                        @php
+                            $verify = '';
+                            if($p->estado == 'Debe'){
+                                $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
+                            }else{
+                                $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
+                                $verify = 'checked disabled';
+                            }
+                        @endphp     
+                        <tr>
+                            <td>{{ $p->id }}</td>
+                            <td>{{ $p->gestion }}</td>
+                            <td>{{ $p->mes }}</td>
+                            <td>{{ $p->monto }}</td>
+                            <td>{{ $p->fecha_pago }}</td>
+                            <td>{!! $estado !!}</td>
+                            <td nowrap="nowrap">
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label text-danger">Debe</label>
+                                    <div class="col-3">
+                                        <span class="switch switch-primary">
+                                            <label>
+                                            <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
+                                            <span></span>
+                                            </label>
+                                        </span>
                                     </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Gestion</th>
-                                <th>Mes</th>
-                                <th>Monto</th>
-                                <th>Fecha Pago</th>
-                                <th>Estado</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                                    <label class="col-3 col-form-label text-success">Pago</label>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Gestion</th>
+                            <th>Mes</th>
+                            <th>Monto</th>
+                            <th>Fecha Pago</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
                 <!--end: Datatable-->
                 <div class="row">
                     <div class="col-md-12">
@@ -103,29 +101,11 @@
 
         $(document).ready(function () {
 
-            $('#tabla_pagos thead th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" class="form-control" placeholder="Buscar ' + title + '" />');
-            });
-
             var table = $('#tabla_pagos').DataTable({
                 language: {
                     url: '{{ asset('datatableEs.json') }}'
                 },
-                initComplete: function () {
-                    // Apply the search
-                    this.api().columns().every(function () {
-                        var that = this;
-
-                        $('input', this.footer()).on('keyup change clear', function () {
-                            if (that.search() !== this.value) {
-                                that
-                                    .search(this.value)
-                                    .draw();
-                            }
-                        });
-                    });
-                }
+                responsive: true,                
             });
 
         });

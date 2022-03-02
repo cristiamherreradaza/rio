@@ -25,10 +25,10 @@ var KTLogin = function() {
 			KTUtil.getById('kt_login_signin_form'),
 			{
 				fields: {
-					username: {
+					email: {
 						validators: {
 							notEmpty: {
-								message: 'Username is required'
+								message: 'Email es requerido'
 							}
 						}
 					},
@@ -54,23 +54,24 @@ var KTLogin = function() {
 
             validation.validate().then(function(status) {
 		        if (status == 'Valid') {
-                    swal.fire({
-		                text: "All is cool! Now you submit this form",
+					$('#kt_login_signin_form').submit();
+                    /*swal.fire({
+		                text: "Todo bien!",
 		                icon: "success",
 		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
+		                confirmButtonText: "Ok, enviar formulario!",
                         customClass: {
     						confirmButton: "btn font-weight-bold btn-light-primary"
     					}
 		            }).then(function() {
 						KTUtil.scrollTop();
-					});
+					});*/
 				} else {
 					swal.fire({
-		                text: "Sorry, looks like there are some errors detected, please try again.",
+		                text: "Existen errores en el formulario, llenalo bien.",
 		                icon: "error",
 		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
+		                confirmButtonText: "Ok, solucionare!",
                         customClass: {
     						confirmButton: "btn font-weight-bold btn-light-primary"
     					}
@@ -113,7 +114,7 @@ var KTLogin = function() {
 					email: {
                         validators: {
 							notEmpty: {
-								message: 'Email address is required'
+								message: 'Email es requerido'
 							},
                             emailAddress: {
 								message: 'The value is not a valid email address'
@@ -123,7 +124,7 @@ var KTLogin = function() {
                     password: {
                         validators: {
                             notEmpty: {
-                                message: 'The password is required'
+                                message: 'Password requerido'
                             }
                         }
                     },
