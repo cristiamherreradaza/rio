@@ -56,8 +56,8 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Fecha Nacimiento
-                                    <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required />
+                                    </label>
+                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"/>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Direccion
-                                <span class="text-danger">*</span></label>
+                                </label>
                                 <input type="text" class="form-control" id="direccion" name="direccion"/>
                             </div>        
                         </div>
@@ -74,8 +74,8 @@
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Telefonos
-                                <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="celulares" name="celulares"/>
+                                </label>
+                                <input type="text" class="form-control" id="celulares" name="celulares" placeholder="78458956 - 68945789"/>
                             </div>
                         </div>
                     </div>
@@ -180,22 +180,6 @@
             }else{
                 $("#formularioPersona")[0].reportValidity();
             }
-        }
-
-        function canbiaDepartamento()
-        {
-            let departamento = $("#departamento").val();
-
-            $.ajax({
-                url: "{{ url('User/ajaxDistrito') }}",
-                data: {departamento: departamento},
-                type: 'POST',
-                success: function(data) {
-                    $("#ajaxDistritos").html(data);
-                    // $("#listadoProductosAjax").html(data);
-                }
-            });
-
         }
 
         function validaEmail()

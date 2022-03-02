@@ -86,31 +86,29 @@
 		</div>
 		<div class="card-body">
 			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40">
-				<table class="table table-bordered table-hover table-striped" id="tabla_categorias">
-					<thead>
+			<table class="table table-bordered table-hover table-striped" id="tabla_categorias">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach ($categorias as $ca)
 						<tr>
-							<th>ID</th>
-							<th>Nombre</th>
-							<th>Descripcion</th>
-							<th>Actions</th>
+							<td>{{ $ca->id }}</td>
+							<td>{{ $ca->nombre }}</td>
+							<td>{{ $ca->estado }}</td>
+							<td>
+								<button class="btn btn-icon btn-warning" onclick="editar('{{ $ca->id }}', '{{ $ca->nombre }}', '{{ $ca->estado }}')"><i class="fa fa-edit"></i></button>
+								<button class="btn btn-icon btn-danger" onclick="elimina('{{ $ca->id }}', '{{ $ca->nombre }}')"><i class="fa fa-trash"></i></button>
+							</td>
 						</tr>
-					</thead>
-					<tbody>
-						@foreach ($categorias as $ca)
-							<tr>
-								<td>{{ $ca->id }}</td>
-								<td>{{ $ca->nombre }}</td>
-								<td>{{ $ca->estado }}</td>
-								<td>
-									<button class="btn btn-warning" onclick="editar('{{ $ca->id }}', '{{ $ca->nombre }}', '{{ $ca->estado }}')"><i class="fa fa-edit"></i></button>
-									<button class="btn btn-danger" onclick="elimina('{{ $ca->id }}', '{{ $ca->nombre }}')"><i class="fa fa-trash"></i></button>
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
+					@endforeach
+				</tbody>
+			</table>
 			<!--end: Datatable-->
 		</div>
 	</div>
@@ -125,6 +123,7 @@
 				language: {
 					url: '{{ asset('datatableEs.json') }}',
 				},
+				responsive: true,
 				order: [[ 0, "desc" ]]
 			});
 

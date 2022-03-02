@@ -23,13 +23,13 @@
             <td>{{ $us->celulares}}</td>
             <td>{{ $us->colegiatura }}</td>
             <td>
-                <a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('{{ $us->id }}')">
+                <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $us->id }}')">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="cuotas('{{ $us->id }}')">
+                <a href="#" class="btn btn-icon btn-success" onclick="cuotas('{{ $us->id }}')">
                     <i class="fas fa-list-alt"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('{{ $us->id }}', '{{ $us->name }}')">
+                <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $us->id }}', '{{ $us->name }}')">
                     <i class="flaticon2-delete"></i>
                 </a>
             </td>
@@ -46,6 +46,7 @@
         order: [[ 0, "desc" ]],
         searching: false,
         lengthChange: false,
+        responsive: true,
         language: {
             url: '{{ asset('datatableEs.json') }}'
         },

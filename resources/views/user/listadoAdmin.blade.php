@@ -66,11 +66,11 @@
                 </div>
             </div>
 			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40">
+			{{-- <div class="table-responsive m-t-40"> --}}
                 <div id="tablaAdmin">
 
                 </div>
-			</div>
+			{{-- </div> --}}
 			<!--end: Datatable-->
 		</div>
 	</div>
