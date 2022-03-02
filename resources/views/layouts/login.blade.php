@@ -81,14 +81,17 @@ License: You must have a valid license purchased only from themeforest(the above
 								{{-- <p class="text-muted font-weight-bold">Enter your details to create your account</p> --}}
 							</div>
 							<!--begin::Form-->
-							<form class="form" novalidate="novalidate" id="kt_login_signup_form">
+							<form class="form" action="{{ url('User/guarda') }}" method="POST" novalidate="novalidate" id="kt_login_signup_form">
+								@csrf
 								<div class="form-group py-3 m-0">
 									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="text"
-										placeholder="Nombre Completo" name="nombre" autocomplete="off" />
+										placeholder="Nombre Completo" name="name" autocomplete="off" />
 								</div>
 								<div class="form-group py-3 border-top m-0">
-									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
-										placeholder="Email" name="email" autocomplete="off" />
+									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email"
+										placeholder="Email" name="email" autocomplete="off" onfocusout="validaEmail()" />
+
+										<span class="form-text text-danger" id="msg-error-email" style="display: none;">Correo duplicado, cambielo!!!</span>
 								</div>
 								<div class="form-group py-3 border-top m-0">
 									<input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
@@ -148,7 +151,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex flex-column-fluid flex-lg-center">
 					<div class="d-flex flex-column justify-content-center">
 						<h3 class="display-3 font-weight-bold my-7 text-white">Registro Integrado de Oncologos</h3>
-						<p class="font-weight-bold font-size-lg text-white opacity-80">Bienvenidos!!!.
+						<p class="font-weight-bold font-size-lg text-white opacity-80">
 						</p>
 					</div>
 				</div>
@@ -174,7 +177,26 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Global Theme Bundle-->
 	<!--begin::Page Scripts(used by this page)-->
 	<script src="{{ asset('assets/js/pages/custom/login/login-general.js') }}"></script>
-	
+	<script>
+		function validaEmail()
+        {
+            let email = $("#email").val();
+
+            $.ajax({
+                url: "{{ url('User/validaEmail') }}",
+                data: {email: email},
+                type: 'POST',
+                success: function(data) {
+                    // console.log(data.vEmail);     
+                    if(data.vEmail > 0){
+                        $("#msg-error-email").show();
+                    }else{
+                        $("#msg-error-email").hide();
+                    }
+                }
+            });
+        }
+	</script>
 	<!--end::Page Scripts-->
 </body>
 <!--end::Body-->

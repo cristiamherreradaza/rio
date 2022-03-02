@@ -22,7 +22,7 @@
                 @csrf
                 <input type="hidden" value="{{ $datosUsuario->id }}" name="user_id">
                 <!--begin: Datatable-->
-                <table class="table table-bordered table-hover table-striped" id="tabla_pagos">
+                <table class="table table-bordered" id="tabla_pagos">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -40,9 +40,11 @@
                             $verify = '';
                             if($p->estado == 'Debe'){
                                 $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Debe</a>';
+                                $texto = 'Pagar';
                             }else{
                                 $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Pagado</a>';
                                 $verify = 'checked disabled';
+                                $texto = 'Pagado';
                             }
                         @endphp     
                         <tr>
@@ -60,7 +62,7 @@
                                         <label class="checkbox checkbox-lg  checkbox-success">
                                             <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
                                             <span></span>
-                                            {{-- Option 1 --}}
+                                            {{ $texto }}
                                         </label>
                                     </div>
                                     {{-- <span class="form-text text-muted">Some help text goes here</span> --}}

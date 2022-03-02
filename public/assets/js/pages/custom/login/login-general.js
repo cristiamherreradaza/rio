@@ -25,6 +25,13 @@ var KTLogin = function() {
 			KTUtil.getById('kt_login_signin_form'),
 			{
 				fields: {
+					name: {
+						validators: {
+							notEmpty: {
+								message: 'Nombre es requerido'
+							}
+						}
+					},
 					email: {
 						validators: {
 							notEmpty: {
@@ -104,10 +111,10 @@ var KTLogin = function() {
 			form,
 			{
 				fields: {
-					fullname: {
+					name: {
 						validators: {
 							notEmpty: {
-								message: 'Username is required'
+								message: 'El nombre es requerido'
 							}
 						}
 					},
@@ -117,7 +124,7 @@ var KTLogin = function() {
 								message: 'Email es requerido'
 							},
                             emailAddress: {
-								message: 'The value is not a valid email address'
+								message: 'Ingrese un email valido'
 							}
 						}
 					},
@@ -165,7 +172,7 @@ var KTLogin = function() {
 		                text: "All is cool! Now you submit this form",
 		                icon: "success",
 		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
+		                confirmButtonText: "Ok, lo corrigo!",
                         customClass: {
     						confirmButton: "btn font-weight-bold btn-light-primary"
     					}
@@ -174,10 +181,10 @@ var KTLogin = function() {
 					});
 				} else {
 					swal.fire({
-		                text: "Sorry, looks like there are some errors detected, please try again.",
+		                text: "Lo siento, hay campos incorrectos, corrigelos.",
 		                icon: "error",
 		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
+		                confirmButtonText: "Ok, lo corrigo!",
                         customClass: {
     						confirmButton: "btn font-weight-bold btn-light-primary"
     					}
