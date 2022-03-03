@@ -26,21 +26,21 @@
 				</div>
 			</li> 
 
+			@if (Auth::user()->perfil == 'Administrador')
+
+			{{-- MENU ADMINISTRACION --}}
+
 			<li class="menu-item" aria-haspopup="true">
 				<a href="index.html" class="menu-link">
 					<i class="fas fa-chart-bar menu-icon"></i>
-					<span class="menu-text">Control Panel</span>
+					<span class="menu-text">CONTROL PANEL</span>
 				</a>
-			</li>
-			<li class="menu-section">
-				<h4 class="menu-text">Custom</h4>
-				<i class="menu-icon ki ki-bold-more-hor icon-md"></i>
 			</li>
 		
 			<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 				<a href="javascript:;" class="menu-link menu-toggle">
 					<i class="fas fa-users menu-icon"></i>
-					<span class="menu-text">Socios</span>
+					<span class="menu-text">SOCIOS</span>
 					<i class="menu-arrow"></i>
 				</a>
 				<div class="menu-submenu">
@@ -72,17 +72,12 @@
 			<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 				<a href="javascript:;" class="menu-link menu-toggle">
 					<i class="fas fa-calendar-day menu-icon"></i>
-					<span class="menu-text">Eventos</span>
+					<span class="menu-text">EVENTOS</span>
 					<i class="menu-arrow"></i>
 				</a>
 				<div class="menu-submenu">
-					<i class="menu-arrow"></i>
 					<ul class="menu-subnav">
-						<li class="menu-item menu-item-parent" aria-haspopup="true">
-							<span class="menu-link">
-								<span class="menu-text">Eventos</span>
-							</span>
-						</li>
+						
 						<li class="menu-item" aria-haspopup="true">
 							<a href="{{ url('Evento/listado') }}" class="menu-link">
 								<i class="menu-bullet menu-bullet-dot">
@@ -99,7 +94,7 @@
 			<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 				<a href="javascript:;" class="menu-link menu-toggle">
 					<i class="fas fa-list menu-icon"></i>
-					<span class="menu-text">Reportes</span>
+					<span class="menu-text">REPORTES</span>
 					<i class="menu-arrow"></i>
 				</a>
 				<div class="menu-submenu">
@@ -131,7 +126,7 @@
 			<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 				<a href="javascript:;" class="menu-link menu-toggle">
 					<i class="fas fa-tools menu-icon"></i>
-					<span class="menu-text"> Administracion</span>
+					<span class="menu-text">ADMINISTRACION</span>
 					<i class="menu-arrow"></i>
 				</a>
 				<div class="menu-submenu">
@@ -156,11 +151,11 @@
 						</li>
 
 						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('User/listado') }}" class="menu-link">
+							<a href="{{ url('Categoria/listado') }}" class="menu-link">
 								<i class="menu-bullet menu-bullet-dot">
 									<span></span>
 								</i>
-								<span class="menu-text">Parametros</span>
+								<span class="menu-text">Categorias</span>
 							</a>
 						</li>
 
@@ -169,30 +164,53 @@
 								<i class="menu-bullet menu-bullet-dot">
 									<span></span>
 								</i>
-								<span class="menu-text">configuracion</span>
-							</a>
-						</li>
-						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('Categoria/listado') }}" class="menu-link">
-								<i class="menu-bullet menu-bullet-dot">
-									<span></span>
-								</i>
-								<span class="menu-text">Categorias</span>
-							</a>
-						</li>
-												
-						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('User/listado') }}" class="menu-link">
-								<i class="menu-bullet menu-bullet-dot">
-									<span></span>
-								</i>
-								<span class="menu-text">Parametros</span>
+								<span class="menu-text">Configuracion</span>
 							</a>
 						</li>
 			
 					</ul>
 				</div>
 			</li>
+
+			{{-- FIN MENU ADMINISTRADORES --}}
+				
+			@elseif (Auth::user()->perfil == 'Doctor')
+
+			{{-- MENU DOCTORES --}}
+
+			<li class="menu-item" aria-haspopup="true">
+				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+					<i class="fas fa-user menu-icon"></i>
+					<span class="menu-text">MI PERFIL</span>
+				</a>
+			</li>
+
+			<li class="menu-item" aria-haspopup="true">
+				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+					<i class="fas fa-calendar-alt menu-icon"></i>
+					<span class="menu-text">EVENTOS</span>
+				</a>
+			</li>
+
+			<li class="menu-item" aria-haspopup="true">
+				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+					<i class="fas fa-coins menu-icon"></i>
+					<span class="menu-text">CUOTAS</span>
+				</a>
+			</li>
+
+			<li class="menu-item" aria-haspopup="true">
+				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+					<i class="fas fa-th-list menu-icon"></i>
+					<span class="menu-text">RECIBOS</span>
+				</a>
+			</li>
+
+			{{-- FIN MENU DOCTORES --}}
+				
+			@endif
+
+
 
 		</ul>
 		<!--end::Menu Nav-->
