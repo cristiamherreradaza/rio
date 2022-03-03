@@ -57,31 +57,17 @@
                             <td>{{ $p->fecha_pago }}</td>
                             <td>{!! $estado !!}</td>
                             <td nowrap="nowrap">
-
                                 <div class="form-group">
-                                    {{-- <label>Large Size</label> --}}
-                                    <div class="checkbox-inline">
-                                        <label class="checkbox checkbox-lg checkbox-success">
-                                            <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
-                                            <span></span>
-                                            {{ $texto }}
-                                        </label>
-                                    </div>
-                                    {{-- <span class="form-text text-muted">Some help text goes here</span> --}}
-                                </div>
-
-                                {{-- <div class="form-group row">
-                                    <label class="col-3 col-form-label text-danger">Debe</label>
-                                    <div class="col-3">
-                                        <span class="switch switch-primary">
-                                            <label>
-                                            <input type="checkbox" {{ $verify }} name="select[{{ $p->id }}]"/>
-                                            <span></span>
+                                    @if ($p->estado == 'Debe')
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox checkbox-lg checkbox-success">
+                                                    <input type="checkbox" {{ $verify }}  name="select[{{ $p->id }}]"/>
+                                                <span></span>
                                             </label>
-                                        </span>
-                                    </div>
-                                    <label class="col-3 col-form-label text-success">Pago</label>
-                                </div> --}}
+                                        </div>
+                                    @endif
+                                    {{ $texto }}
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -165,7 +151,24 @@
         }
 
         function pagar(){
-            $("#formularioPersona").submit();
+
+            var c = () => Array.from(document.getElementsByTagName("INPUT")).filter(cur => cur.type === 'checkbox' && cur.checked).length > 0;
+
+            // Acciones a realizar
+
+            if(!c()) { // Si NO hay ningun checkbox chequeado.
+                // console.log("Ningún chequeado..");
+                Swal.fire(
+                    "Error",
+                    "Debe Cancelar al menos una cuota",
+                    "error"
+                )
+            } else {
+                // console.log("Al menos uno chequeado..");
+
+                $("#formularioPersona").submit();
+            }
+
             // window.location.href = "{{ url('User/listado')}}"
         }
     </script>

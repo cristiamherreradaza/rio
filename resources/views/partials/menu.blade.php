@@ -31,7 +31,7 @@
 			{{-- MENU ADMINISTRACION --}}
 
 			<li class="menu-item" aria-haspopup="true">
-				<a href="index.html" class="menu-link">
+				<a href="{{ url('/home') }}" class="menu-link">
 					<i class="fas fa-chart-bar menu-icon"></i>
 					<span class="menu-text">CONTROL PANEL</span>
 				</a>

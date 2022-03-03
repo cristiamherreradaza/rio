@@ -49,7 +49,7 @@
             <!--begin::Body-->
             <div class="card-body my-4">
                 <a href="#"
-                    class="card-title font-weight-bolder text-white font-size-h6 mb-4 text-hover-state-dark d-block">CUOTAS PAGASDAS DEL MES DE <span id="mes-actual"></span></a>
+                    class="card-title font-weight-bolder text-white font-size-h6 mb-4 text-hover-state-dark d-block">CUOTAS PAGASDAS DEL MES DE <span class="mes-actual"></span></a>
                 <div class="font-weight-bold text-white font-size-sm">
                     <span class="font-size-h2 mr-2">{{ $pagos }}</span>Cuotas Pagados
                 </div>
@@ -89,7 +89,7 @@
         <div class="card card-custom gutter-b">
             <div class="card-header">
                 <div class="card-title">
-                    <h3 class="card-label">Procentaje de Ejemplares Nacionales y Extranjeros</h3>
+                    <h3 class="card-label">Cantidad de Medicos por catecorias</h3>
                 </div>
             </div>
             <div class="card-body">
@@ -106,7 +106,7 @@
         <div class="card card-custom gutter-b">
             <div class="card-header">
                 <div class="card-title">
-                    <h3 class="card-label">Usuarios Registrados por Tipo</h3>
+                    <h3 class="card-label">Cantidad de Socios que pagaron y no pagaron en el mes de <span class="mes-actual"></span></h3>
                 </div>
             </div>
             <div class="card-body">
@@ -167,7 +167,7 @@
                 break;
         }
 
-        $('#mes-actual').text(expr);
+        $('.mes-actual').text(expr);
 
       // const $array1;
 
@@ -175,7 +175,8 @@
         var options = {
           series: [{
           name: 'Pagos por Mes',
-          data: [50, 3, 4, 10, 4, 5, 3, 2, 1, 3, 5, 2] //valores del grafico
+          data: @json($cuotasPagadas)
+        //   data: [50, 3, 4, 10, 4, 5, 3, 2, 1, 3, 5, 2] //valores del grafico
         //   data: ['50', 3, 4, 10, 4, 5, 3, 2, 1, 3, 5, 2] //valores del grafico
 
         }],
@@ -244,7 +245,7 @@
         
         },
         title: {
-          text: 'Cantidad de ejemplares registrados de esta gestion',
+          text: 'Cantidad de Cuotas pagadas por mes de esta gestion',
           floating: true,
           offsetY: 330,
           align: 'center',
@@ -259,12 +260,27 @@
 
         // grafico pie
         var options = {
-          series: [44, 55],
+        //   series: [44, 55],
+          series: [
+              @php
+                  foreach ($doctorCategoria as $doc){
+                    echo $doc->total.",";
+                  }
+              @endphp
+            ],
           chart: {
           width: 480,
           type: 'pie',
         },
-        labels: ['Ejemplares Nacionales', 'Ejemplares Extranjeros'],
+        // labels: ['Ejemplares Nacionales', 'Ejemplares Extranjeros'],
+        labels: [
+                @php
+                 foreach ($doctorCategoria as $doc){
+                     $categoria = App\Categoria::find($doc->categoria_id);
+                     echo "'".$categoria->nombre."'".",";
+                 }
+                @endphp
+                ],
         responsive: [{
           breakpoint: 480,
           options: {
@@ -283,12 +299,12 @@
 
         // grafico dona
          var options = {
-          series: [44, 55,10],
+          series: [{{ $contadorPagador }}, {{ $contadorDeudor }}],
           chart: {
           width: 480,
           type: 'donut',
         },
-        labels: ['Criador', 'Socio', 'indefinido'],	
+        labels: ['Pagaron', 'Deudores'],	
         responsive: [{
           breakpoint: 480,
           options: {
