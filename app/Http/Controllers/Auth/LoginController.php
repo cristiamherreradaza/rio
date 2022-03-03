@@ -47,9 +47,11 @@ class LoginController extends Controller
         // dd(Auth::user()->perfil);
 
         if(Auth::user()->perfil == 'Administrador'){
-            return 'User/listado';
+            return '/home';
+            // return 'User/listado';
         }else{
-            return '/';
+            return 'Panel/inicio';
+            // return '/';
         }
     }
 }

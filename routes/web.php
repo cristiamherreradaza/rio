@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
     return view('home');
 });*/
 
+// Route::get('/', 'UserController@listado');
 Route::get('/', 'UserController@listado');
 // Route::get('/', 'home');
 
