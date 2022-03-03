@@ -31,7 +31,7 @@
 			{{-- MENU ADMINISTRACION --}}
 
 			<li class="menu-item" aria-haspopup="true">
-				<a href="index.html" class="menu-link">
+				<a href="{{ url('/home') }}" class="menu-link">
 					<i class="fas fa-chart-bar menu-icon"></i>
 					<span class="menu-text">CONTROL PANEL</span>
 				</a>
@@ -176,10 +176,11 @@
 				
 			@elseif (Auth::user()->perfil == 'Doctor')
 
+
 			{{-- MENU DOCTORES --}}
 
 			<li class="menu-item" aria-haspopup="true">
-				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+				<a href="{{ url('Medico/perfil')."/".Auth::user()->id}}" class="menu-link">
 					<i class="fas fa-user menu-icon"></i>
 					<span class="menu-text">MI PERFIL</span>
 				</a>

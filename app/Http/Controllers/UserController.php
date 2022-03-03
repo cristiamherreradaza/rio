@@ -110,7 +110,7 @@ class UserController extends Controller
                 $pagos->nmes = $i;
                 $pagos->mes = $meses[$i];
                 $pagos->gestion = $request->gestion;
-                $pagos->fecha_pago = date('Y-m-d H:i:s');
+                // $pagos->fecha_pago = date('Y-m-d H:i:s');
                 $pagos->estado = 'Debe';
                 $pagos->save();
             }
@@ -230,6 +230,7 @@ class UserController extends Controller
             // echo $ids.'<br>';
             $pago =  Pago::find($ids);
 
+            $pago->fecha_pago = date('Y-m-d H:i:s');
             $pago->estado =  "Pagado";
 
             $total = $total + $pago->monto ;

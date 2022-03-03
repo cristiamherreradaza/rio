@@ -39,13 +39,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    
     public function authenticated()
     {
         if(Auth::user()->perfil == 'Doctor'){
             return redirect('Medico/eventos');
         }elseif(Auth::user()->perfil == 'Administrador'){
-            return redirect('User/listado');
+            return redirect('/home');
         }
 
     }

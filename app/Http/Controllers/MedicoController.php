@@ -37,4 +37,11 @@ class MedicoController extends Controller
 
         return view('medico.eventos')->with(compact('eventos'));        			
     }
+
+    public function perfil(Request $request, $user_id){
+        
+        $user = User::find($user_id);
+
+        return view('medico.perfil')->with(compact('user'));
+    }
 }

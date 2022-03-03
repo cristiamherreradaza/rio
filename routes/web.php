@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
     return view('home');
 });*/
 
+// Route::get('/', 'UserController@listado');
 Route::get('/', 'UserController@listado');
 // Route::get('/', 'home');
 
@@ -86,3 +87,4 @@ Route::get('Configuracion/elimina/{configuracion_id}', 'ConfiguracionController@
 //MEDICOS
 Route::post('Medico/registro', 'MedicoController@registro');
 Route::get('Medico/eventos', 'MedicoController@eventos');
+Route::get('Medico/perfil/{user_id}', 'MedicoController@perfil');
