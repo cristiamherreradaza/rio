@@ -176,10 +176,11 @@
 				
 			@elseif (Auth::user()->perfil == 'Doctor')
 
+
 			{{-- MENU DOCTORES --}}
 
 			<li class="menu-item" aria-haspopup="true">
-				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+				<a href="{{ url('Medico/perfil')."/".Auth::user()->id}}" class="menu-link">
 					<i class="fas fa-user menu-icon"></i>
 					<span class="menu-text">MI PERFIL</span>
 				</a>
