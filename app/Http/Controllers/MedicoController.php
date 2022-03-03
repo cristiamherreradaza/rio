@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,5 +27,14 @@ class MedicoController extends Controller
 
         return redirect('/login');
 
+    }
+
+    public function eventos(Request $request)
+    {
+        $eventos = Evento::latest()
+                        ->limit(10)
+                        ->get();
+
+        return view('medico.eventos')->with(compact('eventos'));        			
     }
 }

@@ -102,9 +102,9 @@
 										<li class="menu-item menu-item-submenu menu-item-rel menu-item-active" data-menu-toggle="click" aria-haspopup="true">
 											<span class="text-primary">
 											@php
-											$hoy = date("Y-m-d");
-											$utilidades = new App\librerias\Utilidades();
-											echo $utilidades->fechaCastellano($hoy);
+												$hoy = date("Y-m-d");
+												$utilidades = new App\librerias\Utilidades();
+												echo $utilidades->fechaCastellano($hoy);
 											@endphp
 											- <span id="HoraActual"></span>	
 											</span>											
