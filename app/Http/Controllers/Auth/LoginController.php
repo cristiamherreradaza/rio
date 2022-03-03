@@ -40,16 +40,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectPath()
-    {   
-        // dd(auth()->user()->email);
-        // $perfil = User::where('email', auth()->user()->email)->first();
-        // dd(Auth::user()->perfil);
-
-        if(Auth::user()->perfil == 'Administrador'){
-            return 'User/listado';
-        }else{
-            return '/';
+    public function authenticated()
+    {
+        if(Auth::user()->perfil == 'Doctor'){
+            return redirect('Medico/eventos');
+        }elseif(Auth::user()->perfil == 'Administrador'){
+            return redirect('User/listado');
         }
+
     }
 }
