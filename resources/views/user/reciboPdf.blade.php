@@ -130,7 +130,7 @@
         </div>
         <div id="descripcion">
             @php
-                $descripcion = App\Configuracion::where('descripcion',"Recibo")->first();
+                $descripcion = App\Configuracion::find(1);
                 if($descripcion){
                     echo $descripcion->valor;
                 }else{

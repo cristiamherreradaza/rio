@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class UserController extends Controller
 {
@@ -204,6 +205,17 @@ class UserController extends Controller
         $usuarios = $query->get();
         
         return view('user.ajax_busca')->with(compact('usuarios'));
+    }
+
+    public function previaVista_pago(Request $request){
+
+        $user_id = $request->input('user_id');
+
+        $idsPagos = array_keys($request->select);
+        // dd($idsPagos);
+
+        return view('user.previaVista_pago')->with(compact('user_id', 'idsPagos'));
+        // return view('user.previaVista_pago');
     }
 
     public function guarda_pago(Request $request){

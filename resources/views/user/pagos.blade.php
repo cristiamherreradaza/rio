@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form target="_blank" action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
+            <form action="{{ url('User/previaVista_pago') }}" method="POST" id="formularioPersona">
                 @csrf
                 <input type="hidden" value="{{ $datosUsuario->id }}" name="user_id">
                 <!--begin: Datatable-->
@@ -174,7 +174,7 @@
 
         function pagar(){
             $("#formularioPersona").submit();
-            window.location.href = "{{ url('User/listado')}}"
+            // window.location.href = "{{ url('User/listado')}}"
         }
     </script>
 @endsection
