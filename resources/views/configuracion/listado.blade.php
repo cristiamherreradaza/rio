@@ -103,7 +103,7 @@
 								<td>{{ $con->descripcion }}</td>
 								<td>{{ $con->valor }}</td>
 								<td>
-									<button class="btn btn-warning" onclick="editar('{{ $con->id }}', '{{ $con->descripcion }}', '{{ $con->valor }}')"><i class="fa fa-edit"></i></button>
+									<button class="btn btn-warning btn-icon" onclick="editar('{{ $con->id }}', '{{ $con->descripcion }}', '{{ $con->valor }}')"><i class="fa fa-edit"></i></button>
 									{{-- <button class="btn btn-danger" onclick="elimina('{{ $con->id }}', '{{ $con->nombre }}')"><i class="fa fa-trash"></i></button> --}}
 								</td>
 							</tr>
