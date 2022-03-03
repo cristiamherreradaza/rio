@@ -34,49 +34,68 @@
 
                 </div>
             </div>
+            @php
+                $usuario =  App\User::find($user_id);
+
+                $utilidades = new App\librerias\Utilidades();
+                $fechas = date('Y-m-d');
+                $fecha = $utilidades->fechaCastellano($fechas);
+            @endphp
+            <div class="row">
+                <div class="col-md-6">
+                    <b> Doctor: </b><h6 class="text-info">{{ $usuario->name }}</h6>
+                </div>
+                <div class="col-md-6">
+                    <b> Fecha: </b><h6 class="text-info">{{ $fecha }}</h6>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-hover table-bordered">
-                        <thead>
+                    <form target="_blank" action="{{ url('User/guarda_pago') }}" method="POST" id="formularioPersona">
+                        @csrf
+                        <input type="hidden" value="{{ $user_id }}" name="user_id">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Descripcion</th>
+                                    <th>Sub Total</th>
+                                </tr>
+                            </thead>
+                            @php
+                                $contador = 0;
+                            @endphp
+                            @forelse ($idsPagos as $id)
+                            @php
+                                $pagos = App\Pago::find($id);
+                                $contador = $contador + $pagos->monto;
+                            @endphp
                             <tr>
-                                <th>Cantidad</th>
-                                <th>Descripcion</th>
-                                <th>Sub Total</th>
+                                <td>1 <input type="hidden" value="{{ $pagos->id }}" name="select[{{ $pagos->id }}]"> </td>
+                                <td>Pago de Mensualidad de {{ $pagos->mes }}</td>
+                                <td>{{ $pagos->monto }}</td>
                             </tr>
-                        </thead>
-                        @php
-                            $contador = 0;
-                        @endphp
-                        @forelse ($idsPagos as $id)
-                        @php
-                            $pagos = App\Pago::find($id);
-                            $contador = $contador + $pagos->monto;
-                        @endphp
-                        <tr>
-                            <td>1</td>
-                            <td>Pago de Mensualidad de {{ $pagos->mes }}</td>
-                            <td>{{ $pagos->monto }}</td>
-                        </tr>
-                        @empty
-                            
-                        @endforelse
-                        @php
-                            $utilidades = new App\librerias\NumeroALetras();
-                            $literal = $utilidades->toMoney($contador);
-                        @endphp
-                        <tr>
-                            <th colspan="2">Son: {{ $literal }} 00/100 Bolivianos</th>
-                            <th>{{ number_format($contador, 2) }}</th>
-                        </tr>
-                    </table>
+                            @empty
+                                
+                            @endforelse
+                            @php
+                                $utilidades = new App\librerias\NumeroALetras();
+                                $literal = $utilidades->toMoney($contador);
+                            @endphp
+                            <tr>
+                                <th colspan="2">Son: {{ $literal }} 00/100 Bolivianos</th>
+                                <th>{{ number_format($contador, 2) }}</th>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-dark btn-block"><i class=""></i>Cancelar</button>
+                    <button class="btn btn-dark btn-block"><i class=""></i> Cancelar</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success btn-block"><i class=""></i>Guardar</button>
+                    <button class="btn btn-success btn-block" onclick="generaRecibo()"><i class="fas fa-receipt"></i> Generar Recibo</button>
                 </div>
             </div>
         </div>
@@ -101,55 +120,9 @@
 
         });
 
-        function asiste(user_id, evento_id)
-        {
-            window.location.href = "{{ url('Evento/asiste') }}/"+user_id+"/"+evento_id;
-        }
-
-        function falta(user_id, evento_id)
-        {
-            window.location.href = "{{ url('Evento/falta') }}/"+user_id+"/"+evento_id;
-        }
-
-        function elimina(id, departamento, nombre)
-        {
-            Swal.fire({
-                title: "Quieres eliminar "+nombre+" de "+departamento+"?",
-                text: "Ya no podras recuperarlo!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Si, borrar!",
-                cancelButtonText: "No, cancelar!",
-                reverseButtons: true
-            }).then(function(result) {
-                if (result.value) {
-
-                    window.location.href = "{{ url('Sector/elimina') }}/"+id;
-
-                    Swal.fire(
-                        "Borrado!",
-                        "El registro fue eliminado.",
-                        "success"
-                    )
-                    // result.dismiss can be "cancel", "overlay",
-                    // "close", and "timer"
-                } else if (result.dismiss === "cancel") {
-                    Swal.fire(
-                        "Cancelado",
-                        "La operacion fue cancelada",
-                        "error"
-                    )
-                }
-            });
-        }
-
-        function cambiaPago(id , estado)
-        {
-            window.location.href = "{{ url('User/cambiaPago') }}/"+id+"/"+estado;
-        }
-
-        function pagar(){
+        function generaRecibo(){
             $("#formularioPersona").submit();
+            
             window.location.href = "{{ url('User/listado')}}"
         }
     </script>

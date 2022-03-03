@@ -272,7 +272,14 @@ class UserController extends Controller
             $pago->save();
         }
 
-        $reciboFin = $recibo;
+        return redirect('User/reciboPdf/'.$recibo->id.'/'.$user_id);
+
+    }  
+
+    public function reciboPdf(Request $request, $recibo_id, $user_id){
+
+        // $reciboFin = $recibo;
+        $reciboFin = Recibo::find($recibo_id);
         $usuario = User::find($user_id);
 
         $pdf = PDF::loadView('user.reciboPdf', compact('reciboFin', 'usuario'));
@@ -280,8 +287,7 @@ class UserController extends Controller
 
         // download PDF file with download method
         return $pdf->stream('recibo.pdf');
-
-    }  
+    }
     
     public function listadoAdmin(Request $request){
         $users = User::whereNull('categoria_id')->get();
