@@ -201,7 +201,7 @@
 			</li>
 
 			<li class="menu-item" aria-haspopup="true">
-				<a href="{{ url('Medico/eventos', []) }}" class="menu-link">
+				<a href="{{ url('User/pagos')."/".Auth::user()->id }}" class="menu-link">
 					<i class="fas fa-coins menu-icon"></i>
 					<span class="menu-text">CUOTAS</span>
 				</a>

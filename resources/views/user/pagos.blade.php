@@ -31,7 +31,9 @@
                             <th>Monto</th>
                             <th>Fecha Pago</th>
                             <th>Estado</th>
-                            <th></th>
+                            @if(Auth::user()->perfil == 'Administrador')
+                                <th></th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -56,29 +58,33 @@
                             <td>{{ $p->monto }}</td>
                             <td>{{ $p->fecha_pago }}</td>
                             <td>{!! $estado !!}</td>
-                            <td nowrap="nowrap">
-                                <div class="form-group">
-                                    @if ($p->estado == 'Debe')
-                                        <div class="checkbox-inline">
-                                            <label class="checkbox checkbox-lg checkbox-success">
-                                                    <input type="checkbox" {{ $verify }}  name="select[{{ $p->id }}]"/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                    @endif
-                                    {{ $texto }}
-                                </div>
-                            </td>
+                            @if(Auth::user()->perfil == 'Administrador')
+                                <td nowrap="nowrap">
+                                    <div class="form-group">
+                                        @if ($p->estado == 'Debe')
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox checkbox-lg checkbox-success">
+                                                        <input type="checkbox" {{ $verify }}  name="select[{{ $p->id }}]"/>
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        @endif
+                                        {{ $texto }}
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <!--end: Datatable-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" onclick="pagar()" class="btn btn-block btn-success"><i class="fa fa-money-check"></i> PAGAR</button>
+                @if (Auth::user()->perfil == 'Administrador')
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" onclick="pagar()" class="btn btn-block btn-success"><i class="fa fa-money-check"></i> PAGAR</button>
+                        </div>
                     </div>
-                </div>
+                @endif
             </form>
         </div>
     </div>
