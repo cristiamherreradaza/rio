@@ -69,6 +69,13 @@
 				</div>
 			</li>
 
+			<li class="menu-item" aria-haspopup="true">
+				<a href="{{ url('Recibo/listado') }}" class="menu-link">
+					<i class="fas fa-file-invoice menu-icon"></i>
+					<span class="menu-text">RECIBOS</span>
+				</a>
+			</li>
+
 			<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 				<a href="javascript:;" class="menu-link menu-toggle">
 					<i class="fas fa-calendar-day menu-icon"></i>

@@ -89,3 +89,8 @@ Route::post('Medico/registro', 'MedicoController@registro');
 Route::get('Medico/eventos', 'MedicoController@eventos');
 Route::get('Medico/perfil/{user_id}', 'MedicoController@perfil');
 Route::post('Medico/edita', 'MedicoController@edita');
+
+
+//RECIBOS
+Route::get('Recibo/listado', 'ReciboController@listado');
+Route::post('Recibo/ajax_listado', 'ReciboController@ajax_listado');
