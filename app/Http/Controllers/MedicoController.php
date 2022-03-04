@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pago;
 use App\User;
 use App\Evento;
+use App\Recibo;
 use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -100,6 +101,14 @@ class MedicoController extends Controller
         }
 
         return redirect('User/listado');
+
+    }
+
+    public function verRecibo(Request $request, $user_id){
+
+        $recibos = Recibo::where('persona_id',$user_id)->get();
+
+        return view('medico.verRecibo')->with(compact('recibos'));
 
     }
 }
