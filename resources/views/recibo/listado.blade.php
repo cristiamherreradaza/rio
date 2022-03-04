@@ -163,7 +163,7 @@
 		function muestraBarra(){
 
 			document.getElementById('nombre').value = '';
-			document.getElementById('carnet').value = '';
+			document.getElementById('ci').value = '';
 			document.getElementById('fecha').value = '';
 			document.getElementById('recibo').value = '';
 
