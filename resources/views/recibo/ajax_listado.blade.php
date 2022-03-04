@@ -14,7 +14,7 @@
     <tbody>
         @forelse ($recibos as $r)
         <tr>
-            <td>{{ $r->numero }}</td>
+            <td>{{ $r->id }}</td>
             <td>{{ $r->persona_nombre }}</td>
             <td>{{ $r->carnet }}</td>
             <td>{{ $r->fecha }}</td>
