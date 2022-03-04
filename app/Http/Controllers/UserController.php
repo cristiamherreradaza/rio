@@ -26,7 +26,11 @@ class UserController extends Controller
 
     public function listado()
     {
-        return view('user.listado');
+        $categorias = Categoria::all();
+
+        $importe = Configuracion::find(2);
+
+        return view('user.listado')->with(compact('categorias', 'importe'));
     }
 
     public function ajax_listado()
