@@ -28,7 +28,7 @@
                 <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $even->id }}')">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-success" onclick="asistencia('.$eventos->id.')">
+                <a href="#" class="btn btn-icon btn-success" onclick="asistencia('{{ $even->id }}')">
                     <i class="fas fa-list-alt"></i>
                 </a>
                 <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $even->id }}', '{{ $even->name }}')">

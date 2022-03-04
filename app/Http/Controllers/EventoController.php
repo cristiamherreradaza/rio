@@ -49,6 +49,19 @@ class EventoController extends Controller
         
         return view('evento.ajaxListado')->with(compact('eventos'));
 
+        // $eventos = Evento::all();
+        // return Datatables::of($eventos)
+        //         ->addColumn('action', function($eventos){
+        //             return '<a href="#" class="btn btn-icon btn-warning btn-sm mr-2" onclick="edita('.$eventos->id.')">
+        //                         <i class="fas fa-edit"></i>
+        //                     </a>
+        //                     <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asistencia('.$eventos->id.')">
+        //                         <i class="fas fa-list-alt"></i>
+        //                     </a>
+        //                     <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="elimina('.$eventos->id.', \''.$eventos->nombre.'\')">
+        //                         <i class="flaticon2-delete"></i>
+        //                     </a>';
+        //         })->make(true);
     }
 
     public function nuevo()
