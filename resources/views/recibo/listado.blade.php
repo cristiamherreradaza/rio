@@ -145,12 +145,16 @@
 
 			var nombre =  $("#nombre").val();
 			var fecha  =  $("#fecha").val();
+			var ci  =  $("#ci").val();
+			var recibo  =  $("#recibo").val();
 
 			$.ajax({
                 url: "{{ url('Recibo/ajax_listado') }}",
                 data: {
 					nombre: nombre,
-					fecha:  fecha
+					fecha:  fecha,
+					ci:  ci,
+					recibo:  recibo
 				},
                 type: 'POST',
                 success: function(data) {
