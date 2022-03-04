@@ -9,6 +9,78 @@
 @endsection
 
 @section('content')
+
+	{{-- modal formulario --}}
+	<div class="modal fade" id="modalQuitapendiente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-info" id="exampleModalLabelnombre">Formulario Categorias</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i aria-hidden="true" class="ki ki-close"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="{{ url('Medico/quitaPendiente') }}" method="POST" id="formularioCategorias">
+						@csrf
+						<div class="row">
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<input type="text" name="user_id" id="user_id" value="0"/>
+									<label for="exampleSelect1">Categoria <span class="text-danger">*</span></label>
+									<select class="form-control" id="categoria_id" name="categoria_id" required >
+										<option value="">Seleccione</option>
+										@foreach ($categorias as $c)
+											<option value="{{ $c->id }}">{{ $c->nombre }}</option>
+										@endforeach
+									</select>
+									</div>        
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="exampleSelect1">Mes <span class="text-danger">*</span></label>
+									<select class="form-control" id="mes" name="mes" required >
+										<option value="1" {{ (date('m') == 1)? "selected": ""}}>Enero</option>
+										<option value="2" {{ (date('m') == 2)? "selected": ""}}>Febrero</option>
+										<option value="3" {{ (date('m') == 3)? "selected": ""}}>Marzo</option>
+										<option value="4" {{ (date('m') == 4)? "selected": ""}}>Abril</option>
+										<option value="5" {{ (date('m') == 5)? "selected": ""}}>Mayo</option>
+										<option value="6" {{ (date('m') == 6)? "selected": ""}}>Junio</option>
+										<option value="7" {{ (date('m') == 7)? "selected": ""}}>Julio</option>
+										<option value="8" {{ (date('m') == 8)? "selected": ""}}>Agosto</option>
+										<option value="9" {{ (date('m') == 9)? "selected": ""}}>Septiembre</option>
+										<option value="10" {{ (date('m') == 10)? "selected": ""}}>Octubre</option>
+										<option value="11" {{ (date('m') == 11)? "selected": ""}}>Noviembre</option>
+										<option value="12" {{ (date('m') == 12)? "selected": ""}}>Diciembre</option>
+									</select>
+								</div>        
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="exampleSelect1">Gestion <span class="text-danger">*</span></label>
+									<input type="number" class="form-control" id="gestion" name="gestion" value="{{ date('Y') }}">
+								</div>        
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="exampleSelect1">Importe <span class="text-danger">*</span></label>
+									<input type="number" class="form-control" id="importe" name="importe"  value="{{ $importe->valor }}">
+								</div>        
+							</div>
+						</div>
+						<div class="row">
+							<button class="btn btn-success btn-block">GUARDAR</button>
+						</div>
+
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	{{-- fin modal formulario --}}
+
 	<!--begin::Card-->
 	<div class="card card-custom gutter-b">
 		<div class="card-header flex-wrap py-3">
@@ -207,5 +279,10 @@
 			}
 		}
 
+		function quitaPendiente(nombre, id){
+			$('#exampleModalLabelnombre').text(nombre);
+			$('#user_id').val(id);
+			$('#modalQuitapendiente').modal('show');
+		}
     </script>
 @endsection

@@ -14,15 +14,26 @@
     </thead>
     <tbody>
         @forelse ($usuarios as $us)
+        @php
+            $estadoUsuario = "class=text-success";
+            if($us->estado == "Pendiente"){
+                $estadoUsuario = "class=text-danger";
+            }
+        @endphp
         <tr>
             <td>{{ $us->id }}</td>
-            <td>{{ $us->name }}</td>
+            <td {{ $estadoUsuario }}>{{ $us->name }}</td>
             <td>{{ $us->ci }}</td>
             <td>{{ $us->email }}</td>
             <td>{{ $us->perfil }}</td>
             <td>{{ $us->celulares}}</td>
             <td>{{ $us->colegiatura }}</td>
             <td>
+                @if($us->estado == "Pendiente")
+                    <a href="#" class="btn btn-icon btn-info" onclick="quitaPendiente('{{ $us->name }}', '{{ $us->id }}')">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                @endif
                 <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $us->id }}')">
                     <i class="fas fa-edit"></i>
                 </a>

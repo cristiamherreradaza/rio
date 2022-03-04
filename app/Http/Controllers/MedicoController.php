@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
+use App\Pago;
 use App\User;
 use App\Evento;
+use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -69,5 +70,36 @@ class MedicoController extends Controller
         $usuario->save();
 
         return redirect('Medico/eventos');
+    }
+
+    public function quitaPendiente(Request $request){
+
+        $user_id = $request->input('user_id');
+
+        $medico = User::find($user_id);
+
+        $medico->categoria_id   = $request->input('categoria_id');
+        $medico->estado         = null;
+
+        $medico->save();
+
+
+        $meses = ['Mes', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        for ($i = $request->mes; $i <= 12; $i++) {
+
+            $pagos = new Pago();
+            $pagos->user_id = $user_id;
+            $pagos->monto = $request->importe;
+            $pagos->nmes = $i;
+            $pagos->mes = $meses[$i];
+            $pagos->gestion = $request->gestion;
+            $pagos->estado = 'Debe';
+            $pagos->save();
+
+        }
+
+        return redirect('User/listado');
+
     }
 }
