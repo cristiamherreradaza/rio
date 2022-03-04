@@ -19,6 +19,8 @@ class ReciboController extends Controller
                                 'recibos.id as id', 
                                 'users.name as persona_nombre',
                                 'users.id as personaid',
+                                'recibos.numero',
+                                'recibos.anio',
                                 'recibos.carnet',
                                 'recibos.fecha',
                                 'recibos.total',
@@ -31,13 +33,22 @@ class ReciboController extends Controller
 
         if ($request->filled('nombre')) {
             $nombre = $request->input('nombre');
-            $query->where('users.nombre', 'like', "%$nombre%");
+            $query->where('users.name', 'like', "%$nombre%");
+        }
+        
+        if ($request->filled('ci')) {
+            $ci = $request->input('ci');
+            $query->where('recibos.ci', 'like', "%$ci%");
+        }
+
+        if ($request->filled('recibo')) {
+            $recibo = $request->input('recibo');
+            $query->where('recibos.numero_recibo', 'like', "%$recibo%");
         }
 
         if ($request->filled('fecha')) {
-            $fecha_ini = $request->input('fecha')." 00:00:00";
-            $fecha_fin = $request->input('fecha')." 23:59:59";
-            $query->whereBetween('recibos.fecha_inicio', [$fecha_ini,$fecha_fin]);
+            $fecha = $request->input('fecha');
+            $query->where('recibos.fecha', 'like', "%$fecha%");
         }
 
         if ($request->filled('nombre') || $request->filled('fecha')) {

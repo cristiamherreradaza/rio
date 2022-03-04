@@ -38,7 +38,7 @@
 
 		            <div class="col-md-2">
 		                <label for="">Recibo</label>
-		                <input type="number" class="form-control" name="numero" id="numero">
+		                <input type="number" class="form-control" name="recibo" id="recibo" placeholder="9/2022">
 		            </div>
 
 		            <div class="col-md-2">
@@ -161,6 +161,12 @@
 		}
 
 		function muestraBarra(){
+
+			document.getElementById('nombre').value = '';
+			document.getElementById('carnet').value = '';
+			document.getElementById('fecha').value = '';
+			document.getElementById('recibo').value = '';
+
 			var this_item = document.getElementById('barra-busqueda'); 
 			if( this_item.style.display == 'block' ) {
 				this_item.style.display = 'none';
