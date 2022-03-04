@@ -21,7 +21,7 @@
             <td>{{ str_pad($r->numero, 4, '0', STR_PAD_LEFT) }}/{{ $r->anio }}</td>
             <td>{{ $r->total }}</td>
             <td>
-                <a href='{{ url("User/reciboPdf", [$r->personaid, $r->id]) }}' class="btn btn-icon btn-primary">
+                <a href='{{ url("User/reciboPdf", [$r->id, $r->personaid]) }}' class="btn btn-icon btn-primary">
                     <i class="fas fa-file-invoice"></i>
                 </a>
             </td>
