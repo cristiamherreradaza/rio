@@ -88,3 +88,4 @@ Route::get('Configuracion/elimina/{configuracion_id}', 'ConfiguracionController@
 Route::post('Medico/registro', 'MedicoController@registro');
 Route::get('Medico/eventos', 'MedicoController@eventos');
 Route::get('Medico/perfil/{user_id}', 'MedicoController@perfil');
+Route::post('Medico/edita', 'MedicoController@edita');

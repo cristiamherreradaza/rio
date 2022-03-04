@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\User;
 use App\Evento;
 use Illuminate\Http\Request;
@@ -42,6 +43,31 @@ class MedicoController extends Controller
         
         $user = User::find($user_id);
 
-        return view('medico.perfil')->with(compact('user'));
+        $categorias = Categoria::all();
+
+        return view('medico.perfil')->with(compact('user','categorias'));
+    }
+
+    public function edita(Request $request){
+        // dd($request->all());
+
+        $usuario = User::find($request->input('user_id'));
+
+        $usuario->name              = $request->input('nombre');
+        $usuario->ci                = $request->input('ci');
+        $usuario->colegiatura       = $request->input('colegiatura');
+        $usuario->email             = $request->input('email');
+        $usuario->fecha_nacimiento  = $request->input('fecha_nacimiento');
+        $usuario->direccion         = $request->input('direccion');
+        $usuario->celulares         = $request->input('celulares');
+        $usuario->colegiatura       = $request->input('colegiatura');
+
+        if($request->has('password')){
+            $usuario->password         = Hash::make($request->input('password'));
+        }
+
+        $usuario->save();
+
+        return redirect('Medico/eventos');
     }
 }
