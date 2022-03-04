@@ -90,6 +90,7 @@ Route::get('Medico/eventos', 'MedicoController@eventos');
 Route::get('Medico/perfil/{user_id}', 'MedicoController@perfil');
 Route::post('Medico/edita', 'MedicoController@edita');
 Route::post('Medico/quitaPendiente', 'MedicoController@quitaPendiente');
+Route::get('Medico/verRecibo/{user_id}', 'MedicoController@verRecibo');
 
 
 //RECIBOS
