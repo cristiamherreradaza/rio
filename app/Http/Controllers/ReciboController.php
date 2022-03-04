@@ -38,7 +38,7 @@ class ReciboController extends Controller
         
         if ($request->filled('ci')) {
             $ci = $request->input('ci');
-            $query->where('recibos.carnet', 'like', "%$ci%");
+            $query->where('recibos.carnet', "$ci");
         }
 
         if ($request->filled('recibo')) {
