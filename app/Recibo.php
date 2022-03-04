@@ -21,4 +21,16 @@ class Recibo extends Model
         'estado',
         'deleted_at'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function persona()
+    {
+        return $this->belongsTo('App\User', 'persona_id');
+    }
+
+
 }

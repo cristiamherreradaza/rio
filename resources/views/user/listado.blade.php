@@ -243,6 +243,9 @@
 
 		function buscar(){
 
+			var this_item = document.getElementById('barra-busqueda');
+			this_item.style.display = 'none';
+
 			var nombre		 = $('#nombre').val();
 			var carnet		 = $('#carnet').val();
 			var email		 = $('#email').val();

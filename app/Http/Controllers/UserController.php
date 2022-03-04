@@ -179,7 +179,7 @@ class UserController extends Controller
 
         if ($request->filled('carnet')) {
             $carnet = $request->input('carnet');
-            $query->where('ci', $carnet);
+            $query->where('ci', 'like', "%$carnet%");
         }
 
         if ($request->filled('email')) {
@@ -194,7 +194,7 @@ class UserController extends Controller
 
         if ($request->filled('colegiatura')) {
             $colegiatura = $request->input('colegiatura');
-            $query->where('colegiatura', $colegiatura);
+            $query->where('colegiatura', 'like', "%$colegiatura%");
         }
 
         $query->where('perfil','Doctor');
