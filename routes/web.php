@@ -73,6 +73,8 @@ Route::get('Evento/elimina/{id}', 'EventoController@elimina');
 Route::get('Evento/asistencia/{id}', 'EventoController@asistencia');
 Route::get('Evento/asiste/{user_id}/{evento_id}', 'EventoController@asiste');
 Route::get('Evento/falta/{user_id}/{evento_id}', 'EventoController@falta');
+Route::post('Evento/marcarAsistencia', 'EventoController@marcarAsistencia');
+
 
 //CATEGORIAS
 Route::get('Categoria/listado', 'CategoriaController@listado');

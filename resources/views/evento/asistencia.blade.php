@@ -79,56 +79,88 @@
             </div>
         </div>
         <div class="card-body">
-            <!--begin: Datatable-->
-            <div class="table-responsive m-t-40">
-                <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Carnet</th>
-                            <th>Email</th>
-                            <th>Categoria</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($doctores as $d)
-                        @php
-                            $asistencia = App\Asistencia::where('evento_id', $datosEvento->id)
-                                            ->where('user_id', $d->id)
-                                            ->count();
-                                            
-                            if($asistencia > 0){
-                                $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Asistio</a>';
-                            }else{
-                                $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Falto</a>';
-                            }
-                        @endphp     
-                        <tr>
-                            <td>{{ $d->id }}</td>
-                            <td>{{ $d->name }}</td>
-                            <td>{{ $d->ci }}</td>
-                            <td>{{ $d->email }}</td>
-                            <td>{{ $d->categoria->nombre }}</td>
-                            <td>{!! $estado !!}</td>
-                            <td nowrap="nowrap">
-
-                                <a href="#" class="btn btn-icon btn-success btn-sm mr-2" onclick="asiste('{{ $d->id }}', '{{ $datosEvento->id }}')">
-                                    <i class="fas fa-calendar-check"></i>
-                                </a>
-        
-                                <a href="#" class="btn btn-icon btn-danger btn-sm mr-2" onclick="falta('{{ $d->id }}', '{{ $datosEvento->id }}')">
-                                    <i class="fas fa-calendar-minus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <!--end: Datatable-->
+            <form action="{{ url('Evento/marcarAsistencia') }}" method="POST" id="formularioMarcaAsistencia">
+                <input type="hidden" name="evento_id" id="evento_id" value="{{ $datosEvento->id }}">
+                @csrf
+                <!--begin: Datatable-->
+                <div class="table-responsive m-t-40">
+                    <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Carnet</th>
+                                <th>Email</th>
+                                <th>Categoria</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($doctores as $d)
+                            @php
+                                $asistencia = App\Asistencia::where('evento_id', $datosEvento->id)
+                                                ->where('user_id', $d->id)
+                                                ->first();
+                                                // ->count();
+                                                
+                                // if($asistencia > 0){
+                                if($asistencia){
+                                    if($asistencia->estado == 'Asistio'){
+                                        $estado = '<a href="#" class="btn btn-light-success font-weight-bold mr-2">Asistio</a>';
+                                        $texto = '<span class="text-success">Asistio</span>';
+                                    }else{
+                                        $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Falto</a>';
+                                        $texto = '<span class="text-danger">Falto</span>';
+                                        $verify = 'checked disabled';
+                                    }
+                                }else{
+                                    $estado = '<a href="#" class="btn btn-light-danger font-weight-bold mr-2">Falto</a>';
+                                    $texto = '<span class="text-danger">Falto</span>';
+                                    $verify = 'checked disabled';
+                                }
+                            @endphp     
+                            <tr>
+                                <td>{{ $d->id }}</td>
+                                <td>{{ $d->name }}</td>
+                                <td>{{ $d->ci }}</td>
+                                <td>{{ $d->email }}</td>
+                                <td>{{ $d->categoria->nombre }}</td>
+                                <td>{!! $estado !!}</td>
+                                <td nowrap="nowrap">
+                                    <div class="form-group">
+                                        @if($asistencia)
+                                            @if ($asistencia->estado == 'Falto')
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox checkbox-lg checkbox-success">
+                                                            <input type="checkbox" name="select[{{ $d->id }}]"/>
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            @endif
+                                        @else
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox checkbox-lg checkbox-success">
+                                                        <input type="checkbox" name="select[{{ $d->id }}]"/>
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        @endif
+                                        {!! $texto !!}
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!--end: Datatable-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success btn-block" onclick="marcarAsistencia()"><i class="fa fa-list"></i>GUARDAR</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 									<!--end::Card-->
@@ -186,6 +218,26 @@
                     )
                 }
             });
+        }
+
+        function marcarAsistencia(){
+            var c = () => Array.from(document.getElementsByTagName("INPUT")).filter(cur => cur.type === 'checkbox' && cur.checked).length > 0;
+
+            // Acciones a realizar
+
+            if(!c()) { // Si NO hay ningun checkbox chequeado.
+                // console.log("Ningún chequeado..");
+                Swal.fire(
+                    "Error",
+                    "Debe Cancelar al menos una cuota",
+                    "error"
+                )
+            } else {
+                // console.log("Al menos uno chequeado..");
+
+                $("#formularioMarcaAsistencia").submit();
+            }
+
         }
 
     </script>

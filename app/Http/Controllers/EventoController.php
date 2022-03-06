@@ -89,7 +89,7 @@ class EventoController extends Controller
         $evento->user_id     = Auth::user()->id;
         $evento->nombre      = $request->nombre;
         $evento->invitacion  = $request->invitacion;
-    $evento->ordendia        = $request->ordendia;
+        $evento->ordendia        = $request->ordendia;
         $evento->actareunion = $request->actareunion;
         if($request->imagen != null){
             $evento->imagen = $nombreArchivo;
@@ -128,8 +128,9 @@ class EventoController extends Controller
     {
         // dd($evento_id);
         $asistencia = new Asistencia();
-        $asistencia->user_id = $user_id;
-        $asistencia->evento_id = $evento_id;
+        $asistencia->user_id    = $user_id;
+        $asistencia->evento_id  = $evento_id;
+        $asistencia->estado     = "Asistio";
         $asistencia->save();
         return redirect("Evento/asistencia/$evento_id");
     }
@@ -141,5 +142,53 @@ class EventoController extends Controller
                     ->delete();
 
         return redirect("Evento/asistencia/$evento_id");
+    }
+
+    public function marcarAsistencia(Request $request){
+
+        $evento_id = $request->input('evento_id');
+
+        $evento = Asistencia::where('evento_id',$evento_id)->count();
+
+        $idsAsistencias = array_keys($request->select);
+
+        if( $evento > 0 ){
+
+            foreach ($idsAsistencias as $ids){
+
+                $asistencia = Asistencia::where('evento_id',$evento_id)
+                                        ->where('user_id', $ids)
+                                        ->first();
+
+                $asistencia->estado = "Asistio";
+
+                $asistencia->save();
+            }
+            
+        }else{
+
+            $doctores = User::where('perfil','Doctor')->get();
+
+            foreach ($doctores as $d){
+
+                $asistencia = new Asistencia();
+
+                $asistencia->user_id    = $d->id;
+                $asistencia->evento_id  = $evento_id;
+
+                if(in_array($d->id, $idsAsistencias)){
+                    $asistencia->estado = "Asistio";
+                }else{
+                    $asistencia->estado = "Falto";
+                }
+
+                $asistencia->save();
+            }
+
+        }
+
+        
+
+        return redirect('Evento/listado');
     }
 }
