@@ -98,3 +98,10 @@ Route::get('Medico/verRecibo/{user_id}', 'MedicoController@verRecibo');
 //RECIBOS
 Route::get('Recibo/listado', 'ReciboController@listado');
 Route::post('Recibo/ajax_listado', 'ReciboController@ajax_listado');
+
+//REPORTES
+Route::get('Reporte/pagos', 'ReporteController@pagos');
+Route::post('Reporte/ajax_listado', 'ReporteController@ajax_listado');
+Route::post('Reporte/PagosgeneraPdf', 'ReporteController@PagosgeneraPdf');
+
+

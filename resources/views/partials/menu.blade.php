@@ -109,11 +109,11 @@
 					<ul class="menu-subnav">
 			
 						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('User/listado') }}" class="menu-link">
+							<a href="{{ url('Reporte/pagos') }}" class="menu-link">
 								<i class="menu-bullet menu-bullet-dot">
 									<span></span>
 								</i>
-								<span class="menu-text">Pagos</span>
+								<span class="menu-text">Reporte de Pagos</span>
 							</a>
 						</li>
 			
