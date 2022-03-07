@@ -65,11 +65,17 @@ class PanelController extends Controller
             $pado = Pago::where('user_id',$u->usuario)
                         ->where('nmes',$mes)
                         ->first();
-            if($pado->estado == "Pagado"){
-                $contadorPagador++;
-            }else{
-                $contadorDeudor++;
+
+            if($pado){
+
+                if($pado->estado == "Pagado"){
+                    $contadorPagador++;
+                }else{
+                    $contadorDeudor++;
+                }
+                
             }
+            
         }
 
         return view('panel.inicio')->with(compact('socios', 'usuario', 'pagos', 'cuotasPagadas', 'doctorCategoria', 'contadorPagador', 'contadorDeudor'));
