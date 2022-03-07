@@ -15,14 +15,14 @@
     <tbody>
         @forelse ($usuarios as $us)
         @php
-            $estadoUsuario = "class=text-success";
+            $estadoUsuario = "class='text-success h5'";
             if($us->estado == "Pendiente"){
-                $estadoUsuario = "class=text-danger";
+                $estadoUsuario = "class='text-danger h5'";
             }
         @endphp
         <tr>
             <td>{{ $us->id }}</td>
-            <td {{ $estadoUsuario }}>{{ $us->name }}</td>
+            <td {!! $estadoUsuario !!}>{{ $us->name }}</td>
             <td>{{ $us->ci }}</td>
             <td>{{ $us->email }}</td>
             <td>{{ $us->perfil }}</td>
