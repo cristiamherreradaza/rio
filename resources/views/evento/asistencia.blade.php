@@ -84,7 +84,7 @@
                 @csrf
                 <!--begin: Datatable-->
                 <div class="table-responsive m-t-40">
-                    <table class="table table-bordered table-hover table-striped" id="tabla_usuarios">
+                    <table class="table" id="tabla_usuarios">
                         <thead>
                             <tr>
                                 <th>ID</th>
