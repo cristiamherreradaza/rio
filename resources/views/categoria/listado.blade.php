@@ -80,7 +80,7 @@
 							</g>
 						</svg>
 						<!--end::Svg Icon-->
-					</span>Nuevo Categoria</a>
+					</span>Nueva Categoria</a>
 				<!--end::Button-->
 			</div>
 		</div>
