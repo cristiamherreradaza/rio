@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Recibo;
 use PDF;
+use App\User;
+use App\Recibo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
 {
@@ -123,5 +125,50 @@ class ReporteController extends Controller
 
         // download PDF file with download method
         return $pdf->stream('recibo.pdf');
+    }
+
+    public function gestion(Request $request){
+
+        return view('reporte.gestion');
+
+    }
+
+    public function ajaxPagosgeneraGestion(Request $request){
+
+        $doctores = User::where('perfil', 'Doctor')->get();
+
+        $gestion = $request->input('gestion');
+
+        $totales = DB::table('pagos')
+                 ->select('nmes', DB::raw('sum(monto) as total'))
+                 ->where('gestion',$gestion)
+                 ->where('estado',"Pagado")
+                 ->groupBy('nmes')
+                 ->get();
+
+        return view('reporte.ajaxPagosgeneraGestion')->with(compact('doctores','gestion', 'totales'));
+
+    }
+
+    public function PagosgeneraGestionPdf(Request $request){
+        
+        $doctores = User::where('perfil', 'Doctor')->get();
+
+        $gestion = $request->input('gestion');
+
+        $totales = DB::table('pagos')
+                 ->select('nmes', DB::raw('sum(monto) as total'))
+                 ->where('gestion',$gestion)
+                 ->where('estado',"Pagado")
+                 ->groupBy('nmes')
+                 ->get();
+
+
+        $pdf = PDF::loadView('reporte.PagosgeneraGestionPdf', compact('doctores','gestion', 'totales'));
+        // $pdf->setPaper('letter', 'portrait');
+        $pdf->setPaper('letter', 'landscape');
+
+        // download PDF file with download method
+        return $pdf->stream('reciboGestio.pdf');
     }
 }

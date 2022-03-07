@@ -103,5 +103,6 @@ Route::post('Recibo/ajax_listado', 'ReciboController@ajax_listado');
 Route::get('Reporte/pagos', 'ReporteController@pagos');
 Route::post('Reporte/ajax_listado', 'ReporteController@ajax_listado');
 Route::post('Reporte/PagosgeneraPdf', 'ReporteController@PagosgeneraPdf');
-
-
+Route::get('Reporte/gestion', 'ReporteController@gestion');
+Route::post('Reporte/ajaxPagosgeneraGestion', 'ReporteController@ajaxPagosgeneraGestion');
+Route::post('Reporte/PagosgeneraGestionPdf', 'ReporteController@PagosgeneraGestionPdf');

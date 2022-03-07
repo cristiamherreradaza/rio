@@ -118,11 +118,11 @@
 						</li>
 			
 						<li class="menu-item" aria-haspopup="true">
-							<a href="{{ url('User/listado') }}" class="menu-link">
+							<a href="{{ url('Reporte/gestion') }}" class="menu-link">
 								<i class="menu-bullet menu-bullet-dot">
 									<span></span>
 								</i>
-								<span class="menu-text">Eventos</span>
+								<span class="menu-text">Pagos por Gestion</span>
 							</a>
 						</li>
 			
