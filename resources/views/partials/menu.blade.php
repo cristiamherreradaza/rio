@@ -26,6 +26,8 @@
 				</div>
 			</li> 
 
+			@auth
+
 			@if (Auth::user()->perfil == 'Administrador')
 
 			{{-- MENU ADMINISTRACION --}}
@@ -220,7 +222,7 @@
 				
 			@endif
 
-
+			@endauth
 
 		</ul>
 		<!--end::Menu Nav-->
