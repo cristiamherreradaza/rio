@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\User;
+use App\Evento;
 use App\Recibo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -170,5 +171,59 @@ class ReporteController extends Controller
 
         // download PDF file with download method
         return $pdf->stream('reciboGestio.pdf');
+    }
+
+    public function asistenciaGestion(Request $request){
+
+        $doctores = User::where('perfil', 'Doctor')->get();
+
+        $eventos = Evento::all();
+
+        return view('reporte.asistencia')->with(compact('doctores','eventos'));
+
+    }
+
+    public function ajaxAsistenciaGestion(Request $request){
+
+        $doctores = User::where('perfil', 'Doctor')->get();
+
+        $gestion = $request->input('gestion');
+         
+        $fecha_ini  = $gestion."-01-01 00:00:00";
+        $fecha_fin  = $gestion."-12-31 23:59:59";
+
+        $eventos = Evento::whereBetween('fecha_inicio', [$fecha_ini,$fecha_fin])->get();
+
+        return view('reporte.ajaxAsistenciaGestion')->with(compact('doctores','eventos'));
+    }
+
+    public function AsistenciaGestionPdf(Request $request){
+
+        $doctores = User::where('perfil', 'Doctor')->get();
+
+        $gestion = $request->input('gestion');
+         
+        $fecha_ini  = $gestion."-01-01 00:00:00";
+        $fecha_fin  = $gestion."-12-31 23:59:59";
+
+        $eventos = Evento::whereBetween('fecha_inicio', [$fecha_ini,$fecha_fin])->get();
+
+        $pdf = PDF::loadView('reporte.AsistenciaGestionPdf', compact('doctores','eventos', 'gestion'));
+        $pdf->setPaper('letter', 'portrait');
+        // $pdf->setPaper('letter', 'landscape');
+
+        // download PDF file with download method
+        return $pdf->stream('AsistenciaGestio.pdf');
+
+    }
+
+    public function ajaxAsistenciaDoctor(Request $request){
+
+        $doctor_id = $request->input('doctor');
+
+        $eventos = Evento::all();
+
+        return view('reporte.ajaxAsistenciaDoctor')->with(compact('doctor_id','eventos'));
+
     }
 }
