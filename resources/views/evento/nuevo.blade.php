@@ -125,7 +125,9 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script> --}}
+    <script src="{{ asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/crud/forms/editors/ckeditor-classic.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             // definimos cabecera donde estarra el token y poder hacer nuestras operaciones de put,post...

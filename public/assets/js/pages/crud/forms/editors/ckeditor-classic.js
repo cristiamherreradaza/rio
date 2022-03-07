@@ -4,8 +4,9 @@
 var KTCkeditor = function () {    
     // Private functions
     var demos = function () {
-        ClassicEditor
-			.create( document.querySelector( '#kt-ckeditor-1' ) )
+
+		ClassicEditor
+			.create( document.querySelector( '#invitacion' ) )
 			.then( editor => {
 				console.log( editor );
 			} )
@@ -14,7 +15,7 @@ var KTCkeditor = function () {
 			} );
 
 		ClassicEditor
-			.create( document.querySelector( '#kt-ckeditor-2' ) )
+			.create( document.querySelector( '#ordendia' ) )
 			.then( editor => {
 				console.log( editor );
 			} )
@@ -23,7 +24,7 @@ var KTCkeditor = function () {
 			} );
 
 		ClassicEditor
-			.create( document.querySelector( '#kt-ckeditor-3' ) )
+			.create( document.querySelector( '#actareunion' ) )
 			.then( editor => {
 				console.log( editor );
 			} )
@@ -31,23 +32,8 @@ var KTCkeditor = function () {
 				console.error( error );
 			} );
 
-		ClassicEditor
-			.create( document.querySelector( '#kt-ckeditor-4' ) )
-			.then( editor => {
-				console.log( editor );
-			} )
-			.catch( error => {
-				console.error( error );
-			} );
 
-		ClassicEditor
-			.create( document.querySelector( '#kt-ckeditor-5' ) )
-			.then( editor => {
-				console.log( editor );
-			} )
-			.catch( error => {
-				console.error( error );
-			} );
+		
     }
 
     return {
