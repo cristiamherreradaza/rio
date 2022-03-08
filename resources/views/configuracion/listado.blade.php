@@ -11,7 +11,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Formulario Categorias</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Formulario Configuraciones <span class="text-info" id="texto-nombre"></span></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i aria-hidden="true" class="ki ki-close"></i>
 					</button>
@@ -21,15 +21,15 @@
 						@csrf
 						<div class="row">
 
-							<div class="col-md-6">
+							{{-- <div class="col-md-6">
 								<div class="form-group">
-									<input type="text" name="configuracion_id" id="configuracion_id" value="0"/>
 									<label for="exampleSelect1">Nombre <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="nombre" name="nombre" disabled>
 								</div>        
-							</div>
+							</div> --}}
 
-							<div class="col-md-6">
+							<div class="col-md-12">
+								<input type="hidden" name="configuracion_id" id="configuracion_id" value="0"/>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Descripcion
 										<span class="text-danger">*</span></label>
@@ -144,8 +144,9 @@
 		}
 		
 		function editar(id, nombre, descripcion){
+			
 			$('#configuracion_id').val(id);
-			$('#nombre').val(nombre);
+			$('#texto-nombre').text(nombre);
 			$('#descripcion').val(descripcion);
 
 			$('#modalCategoria').modal('show');
