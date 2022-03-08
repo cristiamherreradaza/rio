@@ -52,7 +52,7 @@
 </table>
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-danger btn-block" onclick="AsistenciaGestiongeneraPdf()"><i class="fa fa-file-pdf"></i>Generar Reporte</button>
+        <button class="btn btn-danger btn-block" onclick="AsistenciaDoctorgeneraPdf()"><i class="fa fa-file-pdf"></i>Generar Reporte</button>
     </div>
 </div>
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>

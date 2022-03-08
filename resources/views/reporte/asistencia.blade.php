@@ -79,7 +79,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form action="{{ url('Reporte/PagosgeneraGestionPdf') }}" method="POST" id="formularioreporteDoctor">
+                                                <form action="{{ url('Reporte/AsistenciaDoctorPdf') }}" method="POST" id="formularioreporteDoctor">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -120,7 +120,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form target="_blank" action="{{ url('Reporte/PagosgeneraGestionPdf') }}" method="POST" id="formularioreporteEvento">
+                                                <form action="{{ url('Reporte/AsistenciaEventoPdf') }}" method="POST" id="formularioreporteEvento">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -235,9 +235,36 @@
                 type: 'POST',
                 success: function(data) {
                     $("#tabla-gestion").html(data);
-                    // $("#listadoProductosAjax").html(data);
                 }
             });
+        }
+
+        function AsistenciaDoctorgeneraPdf(){
+
+            $('#formularioreporteDoctor').submit();
+
+        }
+
+        function ajaxAsistenciaEvento(){
+            // var this_item = document.getElementById('barra-busqueda');
+			// this_item.style.display = 'none';
+
+			var evento =  $("#evento").val();
+
+			$.ajax({
+                url: "{{ url('Reporte/ajaxAsistenciaEvento') }}",
+                data: {
+					evento: evento,
+				},
+                type: 'POST',
+                success: function(data) {
+                    $("#tabla-gestion").html(data);
+                }
+            });
+        }
+
+        function AsistenciaEventogeneraPdf(){
+            $('#formularioreporteEvento').submit();
         }
 
 		function muestraBarra(){

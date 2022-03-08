@@ -6,6 +6,7 @@ use PDF;
 use App\User;
 use App\Evento;
 use App\Recibo;
+use App\Asistencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -225,5 +226,52 @@ class ReporteController extends Controller
 
         return view('reporte.ajaxAsistenciaDoctor')->with(compact('doctor_id','eventos'));
 
+    }
+
+    public function AsistenciaDoctorPdf(Request $request){
+        
+        $doctor = User::find($request->input('doctor'));
+
+        $eventos = Evento::all();
+
+        $pdf = PDF::loadView('reporte.AsistenciaDoctorPdf', compact('doctor','eventos'));
+        $pdf->setPaper('letter', 'portrait');
+        // $pdf->setPaper('letter', 'landscape');
+
+        // download PDF file with download method
+        return $pdf->stream('AsistenciaGestio.pdf');
+
+    }
+
+    public function ajaxAsistenciaEvento(Request $request){
+
+        $evento_id = $request->input('evento');
+
+        $evento = Evento::find($evento_id);
+
+        $asistencia  = Asistencia::where('evento_id',$evento_id)
+                                    ->where('estado','Asistio')
+                                    ->get();
+        
+        return view('reporte.ajaxAsistenciaEvento')->with(compact('asistencia','evento'));
+
+    }
+
+    public function AsistenciaEventoPdf(Request $request){       
+
+        $evento_id = $request->input('evento');
+
+        $evento = Evento::find($evento_id);
+
+        $asistencia  = Asistencia::where('evento_id',$evento_id)
+                                    ->where('estado','Asistio')
+                                    ->get();
+
+        $pdf = PDF::loadView('reporte.AsistenciaEventoPdf', compact('asistencia','evento'));
+        $pdf->setPaper('letter', 'portrait');
+        // $pdf->setPaper('letter', 'landscape');
+
+        // download PDF file with download method
+        return $pdf->stream('AsistenciaGestio.pdf');
     }
 }

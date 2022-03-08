@@ -109,6 +109,7 @@ Route::post('Reporte/PagosgeneraGestionPdf', 'ReporteController@PagosgeneraGesti
 Route::get('Reporte/asistenciaGestion', 'ReporteController@asistenciaGestion');
 Route::post('Reporte/ajaxAsistenciaGestion', 'ReporteController@ajaxAsistenciaGestion');
 Route::post('Reporte/AsistenciaGestionPdf', 'ReporteController@AsistenciaGestionPdf');
-Route::post('Reporte/Reporte/ajaxAsistenciaDoctor', 'ReporteController@Reporte/ajaxAsistenciaDoctor');
 Route::post('Reporte/ajaxAsistenciaDoctor', 'ReporteController@ajaxAsistenciaDoctor');
-
+Route::post('Reporte/AsistenciaDoctorPdf', 'ReporteController@AsistenciaDoctorPdf');
+Route::post('Reporte/ajaxAsistenciaEvento', 'ReporteController@ajaxAsistenciaEvento');
+Route::post('Reporte/AsistenciaEventoPdf', 'ReporteController@AsistenciaEventoPdf');
