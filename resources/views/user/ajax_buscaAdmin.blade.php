@@ -24,9 +24,6 @@
                 <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $us->id }}')">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-success" onclick="cuotas('{{ $us->id }}')">
-                    <i class="fas fa-list-alt"></i>
-                </a>
                 <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $us->id }}', '{{ $us->name }}')">
                     <i class="flaticon2-delete"></i>
                 </a>
