@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleSelect1">Categorias <span class="text-danger">*</span></label>
                                 <select class="form-control" id="categoria_id" name="categoria_id" required >
@@ -91,8 +91,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div> --}}
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password
                                     <span class="text-danger">*</span></label>

@@ -90,7 +90,7 @@ class UserController extends Controller
         }
 
         $persona->categoria_id     = $request->categoria_id;
-        $persona->name             = $request->nombre;
+        $persona->name             = $request->name;
         $persona->ci               = $request->ci;
         $persona->colegiatura      = $request->colegiatura;
         $persona->email            = $request->email;
@@ -101,7 +101,9 @@ class UserController extends Controller
         $persona->direccion        = $request->direccion;
         $persona->celulares        = $request->celulares;
         $persona->perfil           = "Doctor";
+
         $persona->save();
+
         $personaId = $persona->id;
 
         if(!$request->has('id')){
