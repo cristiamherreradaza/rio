@@ -27,7 +27,7 @@
 
 							<div class="col-md-3">
 								<div class="form-group">
-									<input type="text" name="user_id" id="user_id" value="0"/>
+									<input type="hidden" name="user_id" id="user_id" value="0"/>
 									<label for="exampleSelect1">Categoria <span class="text-danger">*</span></label>
 									<select class="form-control" id="categoria_id" name="categoria_id" required >
 										<option value="">Seleccione</option>
