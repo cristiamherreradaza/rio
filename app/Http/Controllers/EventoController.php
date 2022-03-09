@@ -72,6 +72,7 @@ class EventoController extends Controller
     public function guarda(Request $request)
     {
         // dd($request->id);
+        // dd($request->all());
         if($request->imagen != null){
             $archivo = $request->imagen;
             $direccion = 'imagenesEventos/'; // upload path
