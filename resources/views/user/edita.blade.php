@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email
                                 <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ $datosUsuario->email }}" required />
+                                <input type="email" disabled class="form-control" id="email" name="email" value="{{ $datosUsuario->email }}" required />
                             </div>
                         </div>
                         <div class="col-md-2">
