@@ -325,9 +325,15 @@ class UserController extends Controller
         // dd($request->all());
 
         if($request->user_id != 0 ){
+
             $persona = User::find($request->user_id);
+
         }else{
+            
             $persona = new User();
+
+            $persona->email            = $request->email;
+            
         }
 
         // dd($persona);
@@ -335,7 +341,6 @@ class UserController extends Controller
         $persona->perfil           = $request->perfil;
         $persona->name             = $request->nombre;
         $persona->ci               = $request->ci;
-        $persona->email            = $request->email;
         if($request->has('password')){
             $persona->password         = Hash::make($request->password);
         }
