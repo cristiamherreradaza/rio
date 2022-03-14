@@ -89,7 +89,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">INVITACION</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->invitacion }}</textarea>
+                                <textarea name="invitacion" id="invitacion" cols="30" rows="10" class="form-control">{{ $datosEvento->invitacion }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">ORDEN DEL DIA</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->ordendia }}</textarea>
+                                <textarea name="ordendia" id="ordendia" cols="30" rows="10" class="form-control">{{ $datosEvento->ordendia }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">ACTA DE REUNION</label>
-                                <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{ $datosEvento->actareunion }}</textarea>
+                                <textarea name="actareunion" id="actareunion" cols="30" rows="10" class="form-control">{{ $datosEvento->actareunion }}</textarea>
                             </div>
                         </div>
                     </div>

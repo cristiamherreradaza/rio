@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email
                                 <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" required value="{{ ($usuario != null)? $usuario->email : ''}}"/>
+                                <input type="email" {{ ($usuario != null)?  'disabled': '' }} class="form-control" id="email" name="email" required value="{{ ($usuario != null)? $usuario->email : ''}}"/>
                             </div>
                         </div>
                         <div class="col-md-2">

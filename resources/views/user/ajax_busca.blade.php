@@ -40,9 +40,14 @@
                 <a href="#" class="btn btn-icon btn-success" onclick="cuotas('{{ $us->id }}')">
                     <i class="fas fa-list-alt"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $us->id }}', '{{ $us->name }}')">
-                    <i class="flaticon2-delete"></i>
-                </a>
+                @php
+                    $cuotas = App\Pago::where('user_id',$us->id)->count();
+                @endphp
+                @if ($cuotas == 0)
+                    <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $us->id }}', '{{ $us->name }}')">
+                        <i class="flaticon2-delete"></i>
+                    </a>    
+                @endif
             </td>
         </tr>
         @empty

@@ -21,7 +21,7 @@
 						@csrf
 						<div class="row">
 
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<div class="form-group">
 									<input type="hidden" name="categoria_id" id="categoria_id" value="0"/>
 									<label for="exampleSelect1">Nombre <span class="text-danger">*</span></label>
@@ -29,13 +29,13 @@
 								</div>        
 							</div>
 
-							{{-- <div class="col-md-6">
+							<div class="col-md-6">
 								<div class="form-group">
-									<label for="exampleInputPassword1">Estado
+									<label for="exampleInputPassword1">Descripcion
 										<span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="estado" name="estado" required />
 								</div>
-							</div> --}}
+							</div>
 							
 						</div>
 					
@@ -130,6 +130,11 @@
 		});
 
 		function nuevoCategoria(){
+			$('#categoria_id').val(0);
+			$('#estado').val('');
+			$('#nombre').val('');
+
+
 			$('#modalCategoria').modal('show');
 		}
 
