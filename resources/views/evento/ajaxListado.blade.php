@@ -18,8 +18,7 @@
         <tr>
             <td>{{ $even->id }}</td>
             <td>{{ $even->nombre }}</td>
-            {{-- <td>{{ $even->invitacion }}</td> --}}
-            <td>{!! $even->invitacion !!}</td>
+            <td>{{ $even->invitacion }}</td>
             <td>{{ $even->ordendia }}</td>
             <td>{{ $even->actareunion }}</td>
             <td>{{ $even->fecha_inicio}}</td>
@@ -32,9 +31,16 @@
                 <a href="#" class="btn btn-icon btn-success" onclick="asistencia('{{ $even->id }}')">
                     <i class="fas fa-list-alt"></i>
                 </a>
-                <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $even->id }}', '{{ $even->name }}')">
-                    <i class="flaticon2-delete"></i>
-                </a>
+                @php
+                    $contador = App\Asistencia::where('evento_id',$even->id)
+                                                ->where('estado',"Asistio")
+                                                ->count();
+                @endphp
+                @if($contador == 0 )
+                    <a href="#" class="btn btn-icon btn-danger" onclick="elimina('{{ $even->id }}', '{{ $even->name }}')">
+                        <i class="flaticon2-delete"></i>
+                    </a>
+                @endif
             </td>
         </tr>
         @empty
