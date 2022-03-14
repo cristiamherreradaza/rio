@@ -92,7 +92,7 @@
                                 </select>
                             </div>
                         </div> --}}
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password
                                     <span class="text-danger">*</span></label>

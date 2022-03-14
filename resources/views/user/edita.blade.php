@@ -92,6 +92,15 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password
+                                    <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" id="password" name="password" />
+                                <span class="text-danger">Si desea cambiar la contraseña escriba en el campo Contraseña</span>
+                            </div>
+                        </div>
                         
                     </div>
 

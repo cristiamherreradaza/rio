@@ -53,7 +53,7 @@
             <!--end::Image-->
             <!--begin::Text-->
             <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
-                {{ $e->invitacion }}
+                {!! $e->invitacion !!}
             </p>
             <!--end::Text-->
             <!--begin::Action-->

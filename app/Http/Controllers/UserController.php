@@ -99,7 +99,7 @@ class UserController extends Controller
         $persona->name             = $request->nombre;
         $persona->ci               = $request->ci;
         $persona->colegiatura      = $request->colegiatura;
-        if($request->has('password')){
+        if($request->filled('password')){
             $persona->password         = Hash::make($request->password);
         }
         $persona->fecha_nacimiento = $request->fecha_nacimiento;
