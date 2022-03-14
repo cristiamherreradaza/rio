@@ -15,7 +15,7 @@
         <!--begin::Card-->
         <div class="card card-custom gutter-b example example-compact">
             <div class="card-header">
-                <h3 class="card-title">Edicion de Perfil de  <span class="text-info"> {{ $user->name }}</span></h3>
+                <h3 class="card-title">Edicion de Perfil de  <span class="text-info">&nbsp; {{ $user->name }}</span></h3>
                 
             </div>
             <!--begin::Form-->
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email
                                 <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" onfocusout="validaEmail()"  required  value="{{ $user->email }}"/>
+                                <input type="email" class="form-control" id="email" name="email" onfocusout="validaEmail()"  required  value="{{ $user->email }}" disabled />
                                 <span class="form-text text-danger" id="msg-error-email" style="display: none;">Correo duplicado, cambielo!!!</span>
                             </div>
                         </div>

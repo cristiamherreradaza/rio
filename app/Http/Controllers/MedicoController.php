@@ -58,7 +58,6 @@ class MedicoController extends Controller
         $usuario->name              = $request->input('nombre');
         $usuario->ci                = $request->input('ci');
         $usuario->colegiatura       = $request->input('colegiatura');
-        $usuario->email             = $request->input('email');
         $usuario->fecha_nacimiento  = $request->input('fecha_nacimiento');
         $usuario->direccion         = $request->input('direccion');
         $usuario->celulares         = $request->input('celulares');
