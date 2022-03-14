@@ -18,7 +18,8 @@
         <tr>
             <td>{{ $even->id }}</td>
             <td>{{ $even->nombre }}</td>
-            <td>{{ $even->invitacion }}</td>
+            {{-- <td>{{ $even->invitacion }}</td> --}}
+            <td>{!! $even->invitacion !!}</td>
             <td>{{ $even->ordendia }}</td>
             <td>{{ $even->actareunion }}</td>
             <td>{{ $even->fecha_inicio}}</td>

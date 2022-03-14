@@ -90,7 +90,7 @@ class UserController extends Controller
         }
 
         $persona->categoria_id     = $request->categoria_id;
-        $persona->name             = $request->name;
+        $persona->name             = $request->nombre;
         $persona->ci               = $request->ci;
         $persona->colegiatura      = $request->colegiatura;
         $persona->email            = $request->email;

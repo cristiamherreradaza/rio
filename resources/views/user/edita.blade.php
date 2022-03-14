@@ -24,12 +24,12 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nombre
                                 <span class="text-danger">*</span></label>
                                 <input type="hidden" name="id" id="id" value="{{ $datosUsuario->id }}">
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $datosUsuario->name }}" required />
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $datosUsuario->name }}" required />
                             </div>        
                         </div>
                         <div class="col-md-2">
@@ -37,6 +37,13 @@
                                 <label for="exampleInputPassword1">Carnet
                                 <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" id="ci" name="ci" value="{{ $datosUsuario->ci }}" required />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Colegiatura
+                                <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="colegiatura" name="colegiatura" value="{{ $datosUsuario->colegiatura }}" required />
                             </div>
                         </div>
                         <div class="col-md-3">
