@@ -20,7 +20,12 @@
             <td>{{ $r->id }}</td>
             <td>{{ $r->persona_nombre }}</td>
             <td>{{ $r->carnet }}</td>
-            <td>{{ $r->fecha }}</td>
+            <td>
+                @php
+                    $utilidades = new App\librerias\Utilidades();
+                    echo $utilidades->fechaCastellano($r->fecha);
+                @endphp    
+            </td>
             <td>{{ str_pad($r->numero, 4, '0', STR_PAD_LEFT) }}/{{ $r->anio }}</td>
             <td>{{ $r->total }}</td>
             <td>
