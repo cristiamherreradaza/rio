@@ -52,8 +52,18 @@
             @endif
             <!--end::Image-->
             <!--begin::Text-->
+            <br>            
+            <h3 class="text-primary">INVITACION</h3>
             <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
                 {!! $e->invitacion !!}
+            </p>
+            <h3 class="text-primary">OREDEN DEL DIA</h3>
+            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
+                {!! $e->ordendia !!}
+            </p>
+            <h3 class="text-primary">ACTAS DE REUNION</h3>
+            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
+                {!! $e->actareunion !!}
             </p>
             <!--end::Text-->
             <!--begin::Action-->
