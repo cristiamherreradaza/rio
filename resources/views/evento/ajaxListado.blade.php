@@ -18,11 +18,21 @@
         <tr>
             <td>{{ $even->id }}</td>
             <td>{{ $even->nombre }}</td>
-            <td>{{ $even->invitacion }}</td>
-            <td>{{ $even->ordendia }}</td>
-            <td>{{ $even->actareunion }}</td>
-            <td>{{ $even->fecha_inicio}}</td>
-            <td>{{ $even->fecha_fin }}</td>
+            <td>{!! $even->invitacion !!}</td>
+            <td>{!! $even->ordendia !!}</td>
+            <td>{!! $even->actareunion !!}</td>
+            <td>
+                @php
+                    $utilidades = new App\librerias\Utilidades();
+                    echo $utilidades->fechaHoraCastellano($even->fecha_inicio);
+                @endphp
+            </td>
+            <td>
+                @php
+                    $utilidades = new App\librerias\Utilidades();
+                    echo $utilidades->fechaHoraCastellano($even->fecha_fin);
+                @endphp
+            </td>
             <td>{{ $even->tipo }}</td>
             <td>
                 <a href="#" class="btn btn-icon btn-warning" onclick="edita('{{ $even->id }}')">
