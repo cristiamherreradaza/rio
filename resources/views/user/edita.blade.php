@@ -56,8 +56,8 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Fecha Nacimiento
-                                    <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $datosUsuario->fecha_nacimiento }}" required />
+                                    <span class="text-danger"></span></label>
+                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $datosUsuario->fecha_nacimiento }}"/>
                             </div>
                         </div>
                     </div>
@@ -66,16 +66,16 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Direccion
-                                <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $datosUsuario->direccion }}" required />
+                                <span class="text-danger"></span></label>
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $datosUsuario->direccion }}"/>
                             </div>        
                         </div>
                         
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Telefonos
-                                <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="celulares" name="celulares" value="{{ $datosUsuario->celulares }}" required />
+                                <span class="text-danger"></span></label>
+                                <input type="text" class="form-control" id="celulares" name="celulares" value="{{ $datosUsuario->celulares }}"/>
                             </div>
                         </div>
                     </div>
