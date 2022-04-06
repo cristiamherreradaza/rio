@@ -56,7 +56,14 @@
                             <td>{{ $p->gestion }}</td>
                             <td><span class="{{ $color }} h5">{{ $p->mes }}</span></td>
                             <td>{{ $p->monto }}</td>
-                            <td>{{ $p->fecha_pago }}</td>
+                            <td>
+                                @php
+                                    if($p->fecha_pago != null){
+                                        $utilidades = new App\librerias\Utilidades();
+                                        echo $utilidades->fechaHoraCastellano($p->fecha_pago);   
+                                    }
+                                @endphp 
+                            </td>
                             <td>{!! $estado !!}</td>
                             @if(Auth::user()->perfil == 'Administrador')
                                 <td nowrap="nowrap">
