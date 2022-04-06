@@ -71,9 +71,9 @@
                                 $contador = $contador + $pagos->monto;
                             @endphp
                             <tr>
-                                <td>1 <input type="hidden" value="{{ $pagos->id }}" name="select[{{ $pagos->id }}]"> </td>
+                                <td class="text-center">1 <input type="hidden" value="{{ $pagos->id }}" name="select[{{ $pagos->id }}]"> </td>
                                 <td>Pago de Mensualidad de {{ $pagos->mes }}</td>
-                                <td>{{ $pagos->monto }}</td>
+                                <td class="text-right" >{{ $pagos->monto }}</td>
                             </tr>
                             @empty
                                 
@@ -84,7 +84,7 @@
                             @endphp
                             <tr>
                                 <th colspan="2">Son: {{ $literal }} 00/100 Bolivianos</th>
-                                <th>{{ number_format($contador, 2) }}</th>
+                                <th class="text-right">{{ number_format($contador, 2) }}</th>
                             </tr>
                         </table>
                     </form>
