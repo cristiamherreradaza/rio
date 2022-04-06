@@ -264,12 +264,18 @@
                 type: 'POST',
                 success: function(data) {
                     $("#tabla-usuarios").html(data);
-                    // $("#listadoProductosAjax").html(data);
                 }
             });
 		}
 
 		function muestraBarra(){
+
+			$('#nombre').val('');
+			$('#carnet').val('');
+			$('#email').val('');
+			$('#celular').val('');
+			$('#colegiatura').val('');
+
 			var this_item = document.getElementById('barra-busqueda'); 
 			if( this_item.style.display == 'block' ) {
 				this_item.style.display = 'none';
