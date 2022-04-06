@@ -177,7 +177,7 @@
                 @foreach ($pagos as $p)
                     <tr>
                         <td style="border: 1px solid #000;">1</td>
-                        <td style="border: 1px solid #000;">Pago de Mensualidad de {{ $p->mes }}</td>
+                        <td style="border: 1px solid #000; text-align: left;">Pago de Mensualidad de {{ $p->mes }}</td>
                         <td style="border: 1px solid #000;text-align: right;">{{ $p->monto }}</td>                        
                     </tr>
                 @endforeach
